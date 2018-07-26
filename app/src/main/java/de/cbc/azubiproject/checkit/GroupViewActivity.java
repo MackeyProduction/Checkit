@@ -8,6 +8,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import de.cbc.azubiproject.models.AddGroupDialog;
+
 public class GroupViewActivity extends AppCompatActivity {
 
     private boolean pressedOnce;
@@ -57,5 +59,11 @@ public class GroupViewActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, GroupActivity.class);
         startActivity(intent);
+    }
+
+    public void btnAddGroup_onClick(View view)
+    {
+        AddGroupDialog dialog = new AddGroupDialog(this, R.layout.dialog_group);
+        dialog.showDialog();
     }
 }
