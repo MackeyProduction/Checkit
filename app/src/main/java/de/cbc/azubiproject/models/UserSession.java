@@ -1,4 +1,17 @@
 package de.cbc.azubiproject.models;
 
-public class UserSession {
+import java.util.Collection;
+
+import de.cbc.azubiproject.interfaces.IUserSession;
+
+public class UserSession implements IUserSession {
+    @Override
+    public Collection<User> getUsers() {
+        return null;
+    }
+
+    @Override
+    public Collection<Session> getSessions() {
+        return null;
+    }
 }
