@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import java.util.function.Predicate;
+
 import de.cbc.azubiproject.checkit.R;
 
 public abstract class AbstractCustomDialog extends AppCompatActivity {
