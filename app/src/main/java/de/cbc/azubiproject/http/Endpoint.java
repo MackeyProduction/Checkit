@@ -6,6 +6,11 @@ public class Endpoint implements IEndpoint {
     private final String ENDPOINT = "";
     private String endpoint, key;
 
+    public Endpoint(String endpoint)
+    {
+        this(endpoint, "");
+    }
+
     public Endpoint(String endpoint, String key)
     {
         this.endpoint = ENDPOINT + endpoint;

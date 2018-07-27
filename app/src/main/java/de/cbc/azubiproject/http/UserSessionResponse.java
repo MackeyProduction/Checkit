@@ -4,15 +4,16 @@ import org.json.JSONObject;
 
 import java.util.Collection;
 
+import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.interfaces.AbstractHttpResponse;
 
 public class UserSessionResponse extends AbstractHttpResponse {
-    public UserSessionResponse(HttpResponse response) {
-        super(response);
+    public UserSessionResponse(HttpResponse response, Collection collection) {
+        super(response, collection);
     }
 
     @Override
-    protected Collection<JSONObject> parse(Collection<JSONObject> collection) {
+    protected Collection parse(Collection<JSONObject> collection, Collection container) {
         return null;
     }
 }

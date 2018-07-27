@@ -5,28 +5,43 @@ import java.util.Date;
 import de.cbc.azubiproject.interfaces.ISession;
 
 public class Session implements ISession {
-    @Override
-    public int getSId() {
-        return 0;
+    private int sId;
+    private User user;
+    private String sessionId;
+    private boolean isSessionActive;
+    private Date delayDate;
+
+    public Session(int sId, User user, String sessionId, boolean isSessionActive, Date delayDate)
+    {
+        this.sId = sId;
+        this.user = user;
+        this.sessionId = sessionId;
+        this.isSessionActive = isSessionActive;
+        this.delayDate = delayDate;
     }
 
     @Override
-    public String getUser() {
-        return null;
+    public int getSId() {
+        return sId;
+    }
+
+    @Override
+    public User getUser() {
+        return user;
     }
 
     @Override
     public String getSessionId() {
-        return null;
+        return sessionId;
     }
 
     @Override
     public boolean isSessionActive() {
-        return false;
+        return isSessionActive;
     }
 
     @Override
     public Date getDelayDate() {
-        return null;
+        return delayDate;
     }
 }
