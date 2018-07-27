@@ -11,9 +11,16 @@ import de.cbc.azubiproject.interfaces.IRepository;
 import de.cbc.azubiproject.models.User;
 
 public class UserRepository implements IRepository {
+    private Collection<User> collection;
+
+    public UserRepository(Collection<User> collection)
+    {
+        this.collection = collection;
+    }
+
     @Override
     public Object getById(final int id) {
-        return new FilterCollection(new ArrayList<User>(), new Predicate<User>() {
+        return new FilterCollection(collection, new Predicate<User>() {
             @Override
             public boolean apply(User user) {
                 return user.getUserId() == id;
@@ -23,7 +30,7 @@ public class UserRepository implements IRepository {
 
     @Override
     public <T> Collection<T> getAll() {
-        return new FilterCollection(new ArrayList<User>(), new Predicate<User>() {
+        return new FilterCollection(collection, new Predicate<User>() {
             @Override
             public boolean apply(User user) {
                 return user.getUserId() > 0;

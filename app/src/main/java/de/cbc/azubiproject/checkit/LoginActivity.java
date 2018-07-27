@@ -10,6 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import de.cbc.azubiproject.collections.UserCollection;
+import de.cbc.azubiproject.interfaces.IUser;
+import de.cbc.azubiproject.models.User;
+import de.cbc.azubiproject.repositories.UserRepository;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin;
