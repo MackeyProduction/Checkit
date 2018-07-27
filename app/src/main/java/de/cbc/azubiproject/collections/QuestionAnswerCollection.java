@@ -1,5 +1,6 @@
 package de.cbc.azubiproject.collections;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import de.cbc.azubiproject.interfaces.IQuestionAnswer;
@@ -12,33 +13,18 @@ import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
 import de.cbc.azubiproject.repositories.QuestionRepository;
 import de.cbc.azubiproject.repositories.UserGroupRepository;
 
-public class QuestionAnswerCollection implements IQuestionAnswer {
+public class QuestionAnswerCollection {
     private Collection<QuestionAnswer> questionAnswers;
     private int groupId;
 
-    public QuestionAnswerCollection(Collection<QuestionAnswer> questionAnswers, int groupId)
+    public QuestionAnswerCollection(Collection<QuestionAnswer> questionAnswers)
     {
         this.questionAnswers = questionAnswers;
         this.groupId = groupId;
     }
 
-    @Override
-    public UserGroupRepository getUserGroups() {
-        return new UserGroupRepository(new QuestionAnswerRepository().getById(groupId), groupId);
-    }
-
-    @Override
-    public QuestionRepository getQuestions() {
-        return null;
-    }
-
-    @Override
-    public AnswerRepository getAnswers() {
-        return null;
-    }
-
-    @Override
-    public boolean isCorrect() {
-        return false;
+    public QuestionAnswerRepository getRepository()
+    {
+        return new QuestionAnswerRepository(questionAnswers);
     }
 }

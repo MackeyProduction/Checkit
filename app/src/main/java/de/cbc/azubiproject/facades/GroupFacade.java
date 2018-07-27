@@ -1,5 +1,6 @@
 package de.cbc.azubiproject.facades;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -10,20 +11,29 @@ import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.interfaces.IQuestionAnswer;
 import de.cbc.azubiproject.interfaces.IUserGroup;
 import de.cbc.azubiproject.interfaces.IUserSession;
+import de.cbc.azubiproject.models.Answer;
+import de.cbc.azubiproject.models.Question;
 import de.cbc.azubiproject.models.QuestionAnswer;
+import de.cbc.azubiproject.models.Session;
+import de.cbc.azubiproject.models.User;
 import de.cbc.azubiproject.models.UserGroup;
 import de.cbc.azubiproject.models.UserSession;
+import de.cbc.azubiproject.repositories.AnswerRepository;
+import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
+import de.cbc.azubiproject.repositories.QuestionRepository;
+import de.cbc.azubiproject.repositories.UserGroupRepository;
+import de.cbc.azubiproject.repositories.UserSessionRepository;
 
 public class GroupFacade {
-    private int groupId;
-
-    public GroupFacade(int groupId)
+    public GroupFacade()
     {
-        this.groupId = groupId;
     }
 
-    public GroupContainer getContainer()
-    {
-        return new GroupContainer(new QuestionAnswerCollection(new ArrayList<QuestionAnswer>(), groupId), new UserGroupCollection(), new UserSessionCollection());
+    public GroupContainer getContainer() {
+        return new GroupContainer(
+                new QuestionAnswerRepository(new ArrayList<QuestionAnswer>()),
+                new UserGroupRepository(new ArrayList<UserGroup>()),
+                new UserSessionRepository(new ArrayList<UserSession>())
+        );
     }
 }

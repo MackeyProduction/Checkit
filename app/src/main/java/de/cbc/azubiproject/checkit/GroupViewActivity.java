@@ -8,7 +8,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.models.AddGroupDialog;
+import de.cbc.azubiproject.models.QuestionAnswer;
 
 public class GroupViewActivity extends AppCompatActivity {
 
@@ -25,6 +30,14 @@ public class GroupViewActivity extends AppCompatActivity {
         if (loggedIn) {
             setContentView(R.layout.activity_group_view);
         } else {
+            GroupFacade groupFacade = new GroupFacade();
+            Collection<QuestionAnswer> questionAnswerCollection = groupFacade.getContainer().getQuestionAnswerCollection().getByGroupId(1);
+
+            // testing groups
+            for (int i = 0; i < questionAnswerCollection.size(); i++) {
+                System.out.println(questionAnswerCollection.iterator().next().isCorrect());
+            }
+
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }

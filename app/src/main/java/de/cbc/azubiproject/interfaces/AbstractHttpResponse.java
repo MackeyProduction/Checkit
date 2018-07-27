@@ -8,10 +8,10 @@ import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.http.HttpResponse;
 
 public abstract class AbstractHttpResponse {
-    private HttpResponse response;
+    private IHttpResponse response;
     private Collection collection;
 
-    public AbstractHttpResponse(HttpResponse response, Collection collection)
+    public AbstractHttpResponse(IHttpResponse response, Collection collection)
     {
         this.response = response;
         this.collection = collection;

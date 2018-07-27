@@ -5,28 +5,36 @@ import java.util.Collection;
 import de.cbc.azubiproject.collections.QuestionAnswerCollection;
 import de.cbc.azubiproject.collections.UserGroupCollection;
 import de.cbc.azubiproject.collections.UserSessionCollection;
+import de.cbc.azubiproject.interfaces.IQuestionAnswer;
+import de.cbc.azubiproject.interfaces.IQuestionAnswerRepository;
+import de.cbc.azubiproject.interfaces.IRepository;
+import de.cbc.azubiproject.interfaces.IResponseRepository;
+import de.cbc.azubiproject.interfaces.IUserGroup;
+import de.cbc.azubiproject.interfaces.IUserGroupRepository;
+import de.cbc.azubiproject.interfaces.IUserSession;
+import de.cbc.azubiproject.interfaces.IUserSessionRepository;
 
 public class GroupContainer {
-    private QuestionAnswerCollection qaCollection;
-    private UserGroupCollection ugCollection;
-    private UserSessionCollection usCollection;
+    private IQuestionAnswerRepository questionAnswer;
+    private IUserGroupRepository userGroup;
+    private IUserSessionRepository userSession;
 
-    public GroupContainer(QuestionAnswerCollection qaCollection, UserGroupCollection ugCollection, UserSessionCollection usCollection)
+    public GroupContainer(IQuestionAnswerRepository questionAnswer, IUserGroupRepository userGroup, IUserSessionRepository userSession)
     {
-        this.qaCollection = qaCollection;
-        this.ugCollection = ugCollection;
-        this.usCollection = usCollection;
+        this.questionAnswer = questionAnswer;
+        this.userGroup = userGroup;
+        this.userSession = userSession;
     }
 
-    public QuestionAnswerCollection getQuestionAnswerCollection() {
-        return qaCollection;
+    public IQuestionAnswerRepository getQuestionAnswerCollection() {
+        return questionAnswer;
     }
 
-    public UserGroupCollection getUserGroupCollection() {
-        return ugCollection;
+    public IUserGroupRepository getUserGroupCollection() {
+        return userGroup;
     }
 
-    public UserSessionCollection getUserSessionCollection() {
-        return usCollection;
+    public IUserSessionRepository getUserSessionCollection() {
+        return userSession;
     }
 }

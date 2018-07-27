@@ -3,34 +3,44 @@ package de.cbc.azubiproject.models;
 import java.util.Collection;
 
 import de.cbc.azubiproject.interfaces.IQuestionAnswer;
+import de.cbc.azubiproject.interfaces.IRepository;
+import de.cbc.azubiproject.interfaces.IResponseRepository;
+import de.cbc.azubiproject.repositories.QuestionRepository;
+import de.cbc.azubiproject.repositories.UserGroupRepository;
 
 public class QuestionAnswer implements IQuestionAnswer {
-    private Collection<UserGroup> userGroupCollection;
-    private Collection<Question> questionCollection;
-    private Collection<Answer> answerCollection;
+    private int qaId;
+    private IResponseRepository userGroupRepository;
+    private IRepository questionRepository, answerRepository;
     private boolean isCorrect;
 
-    public QuestionAnswer(Collection<UserGroup> userGroupCollection, Collection<Question> questionCollection, Collection<Answer> answerCollection, boolean isCorrect)
+    public QuestionAnswer(int qaId, IResponseRepository userGroupRepository, IRepository questionRepository, IRepository answerRepository, boolean isCorrect)
     {
-        this.userGroupCollection = userGroupCollection;
-        this.questionCollection = questionCollection;
-        this.answerCollection = answerCollection;
+        this.qaId = qaId;
+        this.userGroupRepository = userGroupRepository;
+        this.questionRepository = questionRepository;
+        this.answerRepository = answerRepository;
         this.isCorrect = isCorrect;
     }
 
     @Override
-    public Collection getUserGroups() {
-        return userGroupCollection;
+    public int questionAnswerId() {
+        return qaId;
     }
 
     @Override
-    public Collection<Question> getQuestions() {
-        return questionCollection;
+    public IResponseRepository getUserGroups() {
+        return userGroupRepository;
     }
 
     @Override
-    public Collection<Answer> getAnswers() {
-        return answerCollection;
+    public IRepository getQuestions() {
+        return questionRepository;
+    }
+
+    @Override
+    public IRepository getAnswers() {
+        return answerRepository;
     }
 
     @Override
