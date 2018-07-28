@@ -2,11 +2,16 @@ package de.cbc.azubiproject.repositories;
 
 import com.android.internal.util.Predicate;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Collection;
 
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
+import de.cbc.azubiproject.http.HttpResponse;
+import de.cbc.azubiproject.http.UserGroupResponse;
 import de.cbc.azubiproject.interfaces.IGroup;
 import de.cbc.azubiproject.interfaces.IRepository;
 import de.cbc.azubiproject.interfaces.IResponseRepository;
@@ -25,17 +30,17 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public Object getById(int id) {
-        return null;
+        return new FilterCollection(userGroupCollection, userGroup -> userGroup.getUserGroupId() == id);
     }
 
     @Override
     public Collection getAll() {
-        return null;
+        return getByGroupId(1);
     }
 
     @Override
     public Collection<UserGroup> getByGroupId(int id) {
-        return null;
+        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint("")), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
     }
 
     @Override

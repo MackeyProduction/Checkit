@@ -18,21 +18,11 @@ public class ProfileRepository implements IRepository {
 
     @Override
     public Object getById(final int id) {
-        return new FilterCollection(profileCollection, new Predicate<Profile>() {
-            @Override
-            public boolean apply(Profile profile) {
-                return profile.getProfileId() == id;
-            }
-        });
+        return new FilterCollection(profileCollection, profile -> profile.getProfileId() == id);
     }
 
     @Override
     public <T> Collection<T> getAll() {
-        return new FilterCollection(profileCollection, new Predicate<Profile>() {
-            @Override
-            public boolean apply(Profile profile) {
-                return profile.getProfileId() > 0;
-            }
-        }).getCollection();
+        return new FilterCollection(profileCollection, profile -> profile.getProfileId() > 0).getCollection();
     }
 }

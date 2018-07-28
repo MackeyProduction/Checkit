@@ -29,12 +29,7 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
     @Override
     public Object getById(final int id)
     {
-        return new FilterCollection(questionAnswerCollection, new Predicate<QuestionAnswer>() {
-            @Override
-            public boolean apply(QuestionAnswer questionAnswer) {
-                return questionAnswer.questionAnswerId() == id;
-            }
-        });
+        return new FilterCollection(questionAnswerCollection, questionAnswer -> questionAnswer.questionAnswerId() == id);
     }
 
     public Collection<QuestionAnswer> getByGroupId(int id)

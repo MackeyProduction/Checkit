@@ -20,21 +20,11 @@ public class UserRepository implements IRepository {
 
     @Override
     public Object getById(final int id) {
-        return new FilterCollection(collection, new Predicate<User>() {
-            @Override
-            public boolean apply(User user) {
-                return user.getUserId() == id;
-            }
-        }).getCollection().toArray()[0];
+        return new FilterCollection(collection, user -> user.getUserId() == id).getCollection().toArray()[0];
     }
 
     @Override
     public <T> Collection<T> getAll() {
-        return new FilterCollection(collection, new Predicate<User>() {
-            @Override
-            public boolean apply(User user) {
-                return user.getUserId() > 0;
-            }
-        }).getCollection();
+        return new FilterCollection(collection, user -> user.getUserId() > 0).getCollection();
     }
 }

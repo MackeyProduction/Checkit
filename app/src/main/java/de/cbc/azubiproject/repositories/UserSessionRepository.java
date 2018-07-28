@@ -1,7 +1,15 @@
 package de.cbc.azubiproject.repositories;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Collection;
 
+import de.cbc.azubiproject.collections.FilterCollection;
+import de.cbc.azubiproject.http.Endpoint;
+import de.cbc.azubiproject.http.HttpRequest;
+import de.cbc.azubiproject.http.HttpResponse;
+import de.cbc.azubiproject.http.UserSessionResponse;
 import de.cbc.azubiproject.interfaces.IRepository;
 import de.cbc.azubiproject.interfaces.IResponseRepository;
 import de.cbc.azubiproject.interfaces.IUserSessionRepository;
@@ -17,11 +25,16 @@ public class UserSessionRepository implements IUserSessionRepository {
 
     @Override
     public Object getById(int id) {
-        return null;
+        return new FilterCollection(userSessionCollection, userSession -> userSession.getUserSessionId() == id);
     }
 
     @Override
     public Collection getAll() {
-        return null;
+        return getByUserId(1);
+    }
+
+    @Override
+    public Collection<UserSession> getByUserId(int id) {
+        return new UserSessionResponse(new HttpResponse(new HttpRequest(new Endpoint("/login")), new ArrayList<JSONObject>()), new ArrayList<UserSession>()).getCollection();
     }
 }
