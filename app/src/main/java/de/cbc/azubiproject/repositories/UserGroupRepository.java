@@ -1,6 +1,8 @@
 package de.cbc.azubiproject.repositories;
 
 import com.android.internal.util.Predicate;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
@@ -22,10 +24,12 @@ import de.cbc.azubiproject.models.UserGroup;
 
 public class UserGroupRepository implements IUserGroupRepository {
     private Collection<UserGroup> userGroupCollection;
+    private Gson gson;
 
     public UserGroupRepository(Collection<UserGroup> userGroupCollection)
     {
         this.userGroupCollection = userGroupCollection;
+        this.gson = new Gson();
     }
 
     @Override
@@ -40,11 +44,11 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public Collection<UserGroup> getByGroupId(int id) {
-        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint("")), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
+        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s/questions", id))), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
     }
 
     @Override
     public boolean createNewGroup(IGroup group, Collection<User> user) {
-        return new HttpRequest(new Endpoint("/group")).postRequest(null);
+        return new HttpRequest(new Endpoint("/group")).postRequest(gson.fromJson(gson.toJson(new UserGroup(1, null, null)), null));
     }
 }
