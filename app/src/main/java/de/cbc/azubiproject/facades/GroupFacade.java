@@ -1,26 +1,12 @@
 package de.cbc.azubiproject.facades;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
-import java.util.Collection;
 
-import de.cbc.azubiproject.collections.QuestionAnswerCollection;
-import de.cbc.azubiproject.collections.UserGroupCollection;
-import de.cbc.azubiproject.collections.UserSessionCollection;
 import de.cbc.azubiproject.containers.GroupContainer;
-import de.cbc.azubiproject.interfaces.IQuestionAnswer;
-import de.cbc.azubiproject.interfaces.IUserGroup;
-import de.cbc.azubiproject.interfaces.IUserSession;
-import de.cbc.azubiproject.models.Answer;
-import de.cbc.azubiproject.models.Question;
 import de.cbc.azubiproject.models.QuestionAnswer;
-import de.cbc.azubiproject.models.Session;
-import de.cbc.azubiproject.models.User;
 import de.cbc.azubiproject.models.UserGroup;
 import de.cbc.azubiproject.models.UserSession;
-import de.cbc.azubiproject.repositories.AnswerRepository;
 import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
-import de.cbc.azubiproject.repositories.QuestionRepository;
 import de.cbc.azubiproject.repositories.UserGroupRepository;
 import de.cbc.azubiproject.repositories.UserSessionRepository;
 

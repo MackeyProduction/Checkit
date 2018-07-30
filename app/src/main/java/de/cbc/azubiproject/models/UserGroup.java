@@ -3,18 +3,20 @@ package de.cbc.azubiproject.models;
 import java.security.acl.Group;
 import java.util.Collection;
 
+import de.cbc.azubiproject.interfaces.IGroup;
+import de.cbc.azubiproject.interfaces.IUser;
 import de.cbc.azubiproject.interfaces.IUserGroup;
 
 public class UserGroup implements IUserGroup {
     private int userGroupId;
-    private Collection<User> userCollection;
-    private Collection<Group> groupCollection;
+    private IUser user;
+    private IGroup group;
 
-    public UserGroup(int userGroupId, Collection<User> userCollection, Collection<Group> groupCollection)
+    public UserGroup(int userGroupId, IUser user, IGroup group)
     {
         this.userGroupId = userGroupId;
-        this.userCollection = userCollection;
-        this.groupCollection = groupCollection;
+        this.user = user;
+        this.group = group;
     }
 
     @Override
@@ -23,12 +25,12 @@ public class UserGroup implements IUserGroup {
     }
 
     @Override
-    public Collection<User> getUsers() {
-        return userCollection;
+    public IUser getUser() {
+        return user;
     }
 
     @Override
-    public Collection<Group> getGroups() {
-        return groupCollection;
+    public IGroup getGroup() {
+        return group;
     }
 }

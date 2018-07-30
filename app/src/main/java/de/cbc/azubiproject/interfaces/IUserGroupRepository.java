@@ -7,5 +7,5 @@ import de.cbc.azubiproject.models.UserGroup;
 
 public interface IUserGroupRepository extends IResponseRepository {
     public Collection<UserGroup> getByGroupId(int id);
-    public boolean createNewGroup(IGroup group, Collection<User> user);
+    public boolean createNewGroup(Collection<UserGroup> userGroupCollection);
 }

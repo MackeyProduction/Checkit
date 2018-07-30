@@ -3,20 +3,10 @@ package de.cbc.azubiproject.checkit;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import de.cbc.azubiproject.collections.UserCollection;
-import de.cbc.azubiproject.interfaces.IUser;
-import de.cbc.azubiproject.models.User;
-import de.cbc.azubiproject.repositories.UserRepository;
 
 public class LoginActivity extends AppCompatActivity {
 

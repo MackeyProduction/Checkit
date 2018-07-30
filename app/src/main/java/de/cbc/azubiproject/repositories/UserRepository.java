@@ -1,12 +1,8 @@
 package de.cbc.azubiproject.repositories;
 
-import com.android.internal.util.Predicate;
-
-import java.util.ArrayList;
 import java.util.Collection;
 
 import de.cbc.azubiproject.collections.FilterCollection;
-import de.cbc.azubiproject.collections.UserCollection;
 import de.cbc.azubiproject.interfaces.IRepository;
 import de.cbc.azubiproject.models.User;
 

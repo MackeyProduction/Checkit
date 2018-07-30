@@ -3,7 +3,7 @@ package de.cbc.azubiproject.http;
 import de.cbc.azubiproject.interfaces.IEndpoint;
 
 public class Endpoint implements IEndpoint {
-    private final String ENDPOINT = "";
+    private final String ENDPOINT = "https://476rquznbd.execute-api.eu-central-1.amazonaws.com/prod";
     private String endpoint, key;
 
     public Endpoint(String endpoint)

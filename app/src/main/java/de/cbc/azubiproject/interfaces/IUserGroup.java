@@ -7,6 +7,6 @@ import de.cbc.azubiproject.models.User;
 
 public interface IUserGroup {
     public int getUserGroupId();
-    public Collection<User> getUsers();
-    public Collection<Group> getGroups();
+    public IUser getUser();
+    public IGroup getGroup();
 }
