@@ -7,6 +7,8 @@ import java.util.Collection;
 
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.interfaces.AbstractHttpResponse;
+import de.cbc.azubiproject.models.Answer;
+import de.cbc.azubiproject.models.Question;
 import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.UserGroup;
 import de.cbc.azubiproject.repositories.AnswerRepository;
@@ -24,9 +26,9 @@ public class QuestionAnswerResponse extends AbstractHttpResponse {
 
         QuestionAnswer questionAnswer = new QuestionAnswer(
                 1,
-                new UserGroupRepository(new ArrayList<UserGroup>()),
-                new QuestionRepository(null),
-                new AnswerRepository(null),
+                new UserGroup(1, null, null),
+                new Question(1, null),
+                new Answer(1, null, null),
                 true
         );
 

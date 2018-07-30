@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import de.cbc.azubiproject.collections.FilterCollection;
+import de.cbc.azubiproject.collections.UserGroupCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
 import de.cbc.azubiproject.http.HttpResponse;
@@ -34,17 +35,22 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public Object getById(int id) {
-        return new FilterCollection(userGroupCollection, userGroup -> userGroup.getUserGroupId() == id);
+        return new FilterCollection(userGroupCollection, userGroup -> userGroup.getUserGroupId() == id).getItem();
     }
 
     @Override
     public Collection getAll() {
-        return getByGroupId(1);
+        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint("/group")), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
     }
 
     @Override
     public Collection<UserGroup> getByGroupId(int id) {
-        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s/questions", id))), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
+        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s", id))), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
+    }
+
+    public UserGroupCollection getRepositories()
+    {
+        return new UserGroupCollection(getAll());
     }
 
     @Override

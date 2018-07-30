@@ -6,8 +6,8 @@ import de.cbc.azubiproject.repositories.UserGroupRepository;
 
 public interface IQuestionAnswer {
     public int questionAnswerId();
-    public IResponseRepository getUserGroups();
-    public IRepository getQuestions();
-    public IRepository getAnswers();
+    public IUserGroup getUserGroup();
+    public IQuestion getQuestion();
+    public IAnswer getAnswer();
     public boolean isCorrect();
 }

@@ -30,7 +30,7 @@ public class UserSessionRepository implements IUserSessionRepository {
 
     @Override
     public Collection getAll() {
-        return getByUserId(1);
+        return new UserSessionResponse(new HttpResponse(new HttpRequest(new Endpoint("/sessions")), new ArrayList<JSONObject>()), new ArrayList<UserSession>()).getCollection();
     }
 
     @Override

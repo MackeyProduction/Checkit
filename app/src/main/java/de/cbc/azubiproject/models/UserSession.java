@@ -6,14 +6,14 @@ import de.cbc.azubiproject.interfaces.IUserSession;
 
 public class UserSession implements IUserSession {
     private int userSessionId;
-    private Collection<User> userCollection;
-    private Collection<Session> sessionCollection;
+    private User user;
+    private Session session;
 
-    public UserSession(int userSessionId, Collection<User> userCollection, Collection<Session> sessionCollection)
+    public UserSession(int userSessionId, User user, Session session)
     {
         this.userSessionId = userSessionId;
-        this.userCollection = userCollection;
-        this.sessionCollection = sessionCollection;
+        this.user = user;
+        this.session = session;
     }
 
     @Override
@@ -22,12 +22,12 @@ public class UserSession implements IUserSession {
     }
 
     @Override
-    public Collection<User> getUsers() {
-        return userCollection;
+    public User getUser() {
+        return user;
     }
 
     @Override
-    public Collection<Session> getSessions() {
-        return sessionCollection;
+    public Session getSession() {
+        return session;
     }
 }

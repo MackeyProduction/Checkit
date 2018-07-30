@@ -7,6 +7,6 @@ import de.cbc.azubiproject.models.User;
 
 public interface IUserSession {
     public int getUserSessionId();
-    public Collection<User> getUsers();
-    public Collection<Session> getSessions();
+    public User getUser();
+    public Session getSession();
 }

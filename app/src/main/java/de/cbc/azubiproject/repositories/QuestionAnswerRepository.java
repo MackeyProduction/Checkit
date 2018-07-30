@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import de.cbc.azubiproject.collections.FilterCollection;
+import de.cbc.azubiproject.collections.QuestionAnswerCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
 import de.cbc.azubiproject.http.HttpResponse;
@@ -34,11 +35,16 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     public Collection<QuestionAnswer> getByGroupId(int id)
     {
-        return new QuestionAnswerResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s/", id))), new ArrayList<JSONObject>()), questionAnswerCollection).getCollection();
+        return new QuestionAnswerResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s/questions", id))), new ArrayList<JSONObject>()), questionAnswerCollection).getCollection();
+    }
+
+    public QuestionAnswerCollection getRepositories()
+    {
+        return new QuestionAnswerCollection((Collection<QuestionAnswer>) getAll());
     }
 
     @Override
     public Collection getAll() {
-        return getByGroupId(1);
+        return new QuestionAnswerResponse(new HttpResponse(new HttpRequest(new Endpoint("/questions")), new ArrayList<JSONObject>()), questionAnswerCollection).getCollection();
     }
 }

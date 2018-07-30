@@ -19,6 +19,10 @@ public abstract class AbstractFilterCollection {
     {
         return filter(collection, predicate);
     }
+    public Object getItem()
+    {
+        return filter(collection, predicate).iterator().next();
+    }
 
     protected abstract <T> Collection<T> filter(Collection<T> collection, Predicate<T> predicate);
 }

@@ -16,21 +16,21 @@ public class Profile implements IProfile {
 
     @Override
     public int getProfileId() {
-        return 0;
+        return profileId;
     }
 
     @Override
     public String getFirstName() {
-        return null;
+        return firstName;
     }
 
     @Override
     public String getLastName() {
-        return null;
+        return lastName;
     }
 
     @Override
     public String getEmail() {
-        return null;
+        return email;
     }
 }
