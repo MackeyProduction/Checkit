@@ -55,6 +55,6 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public boolean createNewGroup(Collection<UserGroup> userGroupCollection) {
-        return new HttpRequest(new Endpoint("/group")).postRequest(gson.fromJson(gson.toJson(userGroupCollection), null));
+        return new HttpRequest(new Endpoint("/group")).postRequest(gson.toJson(userGroupCollection));
     }
 }
