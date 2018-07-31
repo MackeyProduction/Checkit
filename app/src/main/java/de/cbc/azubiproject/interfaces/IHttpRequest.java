@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import java.util.Collection;
 
 public interface IHttpRequest {
-    public JsonObject getRequest();
-    public boolean postRequest(JsonObject data);
-    public boolean deleteRequest();
+    public String getRequest();
+    public boolean postRequest(String json);
+    public boolean deleteRequest(int id);
 }
