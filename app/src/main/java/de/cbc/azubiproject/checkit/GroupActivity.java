@@ -10,51 +10,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import de.cbc.azubiproject.models.ActionBarHelper;
+import de.cbc.azubiproject.models.AddQuestionDialog;
 
-public class GroupActivity extends MyFancyBBaseActivity {
-
+public class GroupActivity extends ActionBarHelper {
     private TextView questionTextView;
-    private ImageView backButton, profileButton;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        questionTextView = (TextView) findViewById(R.id.textViewQuestion);
-        Typeface ubuntu = Typeface.createFromAsset(getAssets(), "font/Ubuntu-R.ttf");
-        questionTextView.setTypeface(ubuntu);
-
-        backButton = (ImageView) findViewById(R.id.imageViewBackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
-        profileButton = (ImageView) findViewById(R.id.imageViewProfile);
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-}
-
-
-class MyFancyBBaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.checkit_action_bar_back_button);
-        View view = getSupportActionBar().getCustomView();
+        questionTextView = (TextView) findViewById(R.id.textViewQuestion);
+        Typeface ubuntu = Typeface.createFromAsset(getAssets(), "font/Ubuntu-R.ttf");
+        questionTextView.setTypeface(ubuntu);
+    }
 
+    public void btnQuizMode_onClick(View view)
+    {
+        Intent intent = new Intent(this, QuestionModeActivity.class);
+        startActivity(intent);
+    }
 
+    public void btnAddQuestion_onClick(View view)
+    {
+        AddQuestionDialog addQuestionDialog = new AddQuestionDialog(this, R.layout.dialog_group_question);
+        addQuestionDialog.showDialog();
     }
 }

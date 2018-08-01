@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import de.cbc.azubiproject.facades.GroupFacade;
+import de.cbc.azubiproject.models.ActionBarHelper;
+import de.cbc.azubiproject.models.ActionBarNoBackButton;
 import de.cbc.azubiproject.models.AddGroupDialog;
 import de.cbc.azubiproject.models.QuestionAnswer;
 
-public class GroupViewActivity extends AppCompatActivity {
+public class GroupViewActivity extends ActionBarNoBackButton {
 
     private boolean pressedOnce;
     private boolean loggedIn;
@@ -24,11 +26,6 @@ public class GroupViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.checkit_action_bar);
-        View view = getSupportActionBar().getCustomView();
 
         // set login state
         loggedIn = getIntent().getBooleanExtra(LoginActivity.LOGIN_STATE, false);

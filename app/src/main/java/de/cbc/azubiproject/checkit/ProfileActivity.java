@@ -7,18 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class ProfileActivity extends AppCompatActivity {
+import de.cbc.azubiproject.models.ActionBarHelper;
+
+public class ProfileActivity extends ActionBarHelper {
     private TextView textViewUsername, textViewAskedQuestions, textViewAskedQuestionsSince, textViewRegisteredSince, textViewRegisteredSinceString, textViewActiveGroups;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.checkit_action_bar_back_button);
-        View view = getSupportActionBar().getCustomView();
 
         Typeface ubuntu = Typeface.createFromAsset(getAssets(), "font/Ubuntu-R.ttf");
 

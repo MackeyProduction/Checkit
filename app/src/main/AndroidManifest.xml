@@ -32,7 +32,9 @@
         <activity
             android:name=".ProfileActivity"
             android:theme="@style/checkit_app_theme" />
-        <activity android:name=".QuestionModeActivity"></activity>
+        <activity
+            android:name=".QuestionModeActivity"
+            android:theme="@style/checkit_app_theme" />
     </application>
 
 </manifest>

@@ -3,7 +3,9 @@ package de.cbc.azubiproject.checkit;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class QuestionModeActivity extends AppCompatActivity {
+import de.cbc.azubiproject.models.ActionBarHelper;
+
+public class QuestionModeActivity extends ActionBarHelper {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
