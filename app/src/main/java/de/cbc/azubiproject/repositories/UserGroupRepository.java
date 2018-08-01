@@ -40,12 +40,12 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public Collection getAll() {
-        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint("/group")), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
+        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint("/group")), ""), userGroupCollection).getCollection();
     }
 
     @Override
     public Collection<UserGroup> getByGroupId(int id) {
-        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s", id))), new ArrayList<JSONObject>()), userGroupCollection).getCollection();
+        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s", id))), ""), userGroupCollection).getCollection();
     }
 
     public UserGroupCollection getRepositories()

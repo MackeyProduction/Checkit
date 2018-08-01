@@ -1,11 +1,14 @@
 package de.cbc.azubiproject.http;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
 import java.util.Collection;
 
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.interfaces.AbstractHttpResponse;
+import de.cbc.azubiproject.models.UserGroup;
 
 public class UserGroupResponse extends AbstractHttpResponse {
     public UserGroupResponse(HttpResponse response, Collection collection) {
@@ -13,7 +16,10 @@ public class UserGroupResponse extends AbstractHttpResponse {
     }
 
     @Override
-    protected Collection parse(Collection<JSONObject> collection, Collection container) {
+    protected Collection parse(String json, Collection container) {
+        Gson gson = new Gson();
+        gson.fromJson(json, UserGroup.class);
+
         return null;
     }
 }

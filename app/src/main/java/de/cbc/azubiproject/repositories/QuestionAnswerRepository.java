@@ -35,7 +35,7 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     public Collection<QuestionAnswer> getByGroupId(int id)
     {
-        return new QuestionAnswerResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s/questions", id))), new ArrayList<JSONObject>()), questionAnswerCollection).getCollection();
+        return new QuestionAnswerResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s/questions", id))), ""), questionAnswerCollection).getCollection();
     }
 
     public QuestionAnswerCollection getRepositories()
@@ -45,6 +45,6 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     @Override
     public Collection getAll() {
-        return new QuestionAnswerResponse(new HttpResponse(new HttpRequest(new Endpoint("/questions")), new ArrayList<JSONObject>()), questionAnswerCollection).getCollection();
+        return new QuestionAnswerResponse(new HttpResponse(new HttpRequest(new Endpoint("/questions")), ""), questionAnswerCollection).getCollection();
     }
 }

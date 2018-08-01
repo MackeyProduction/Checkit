@@ -19,8 +19,8 @@ public abstract class AbstractHttpResponse {
 
     public Collection getCollection()
     {
-        return parse(response.getCollection(), collection);
+        return parse(response.getJson(), collection);
     }
 
-    protected abstract Collection parse(Collection<JSONObject> collection, Collection container);
+    protected abstract Collection parse(String json, Collection container);
 }

@@ -13,7 +13,7 @@ public class UserSessionResponse extends AbstractHttpResponse {
     }
 
     @Override
-    protected Collection parse(Collection<JSONObject> collection, Collection container) {
+    protected Collection parse(String json, Collection container) {
         return null;
     }
 }

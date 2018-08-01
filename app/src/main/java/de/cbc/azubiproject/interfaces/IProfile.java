@@ -5,4 +5,5 @@ public interface IProfile {
     public String getFirstName();
     public String getLastName();
     public String getEmail();
+    public String getBirthDate();
 }

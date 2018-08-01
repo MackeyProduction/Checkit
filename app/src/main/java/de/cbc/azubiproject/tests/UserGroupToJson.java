@@ -23,9 +23,9 @@ public class UserGroupToJson {
         Gson gson = new Gson();
 
         User[] users = new User[] {
-                new User(1, "anheier", "123456", new Profile(1, "Til", "Anheier", "til.anheier@cbc.de")),
-                new User(2, "vorbrugg", "foobar", new Profile(2, "Christin", "Vorbrugg", "christin.vorbrugg@rtl.de")),
-                new User(3, "woll", "woll123", new Profile(3, "Tim", "Woll", "tim.woll@cbc.de"))
+                new User(1, "anheier", "123456", "abcdef", "2018-08-01 00:00:00", new Profile(1, "Til", "Anheier", "til.anheier@cbc.de", "07.09.1996")),
+                new User(2, "vorbrugg", "foobar", "ghijklmn", "2018-07-25 12:00:00", new Profile(2, "Christin", "Vorbrugg", "christin.vorbrugg@rtl.de", "01.01.1997")),
+                new User(3, "woll", "woll123", "opqrstuvw", "2018-07-08 11:00:00", new Profile(3, "Tim", "Woll", "tim.woll@cbc.de", "01.01.1996"))
         };
 
         Group[] groups = new Group[] {

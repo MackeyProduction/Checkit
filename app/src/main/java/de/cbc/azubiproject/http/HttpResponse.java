@@ -8,21 +8,21 @@ import de.cbc.azubiproject.interfaces.IHttpResponse;
 
 public class HttpResponse implements IHttpResponse {
     private HttpRequest request;
-    private Collection<JSONObject> collection;
+    private String json;
 
-    public HttpResponse(HttpRequest request, Collection<JSONObject> collection)
+    public HttpResponse(HttpRequest request, String json)
     {
         this.request = request;
-        this.collection = collection;
+        this.json = json;
     }
 
     @Override
-    public Collection<JSONObject> getCollection() {
-        return null;
+    public String getJson() {
+        return json;
     }
 
     @Override
     public HttpRequest getRequest() {
-        return null;
+        return request;
     }
 }

@@ -7,6 +7,6 @@ import java.util.Collection;
 import de.cbc.azubiproject.http.HttpRequest;
 
 public interface IHttpResponse {
-    public Collection<JSONObject> getCollection();
+    public String getJson();
     public HttpRequest getRequest();
 }

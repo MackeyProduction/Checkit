@@ -1,5 +1,7 @@
 package de.cbc.azubiproject.http;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -21,7 +23,10 @@ public class QuestionAnswerResponse extends AbstractHttpResponse {
     }
 
     @Override
-    protected Collection<QuestionAnswer> parse(Collection<JSONObject> collection, Collection container) {
+    protected Collection<QuestionAnswer> parse(String json, Collection container) {
+        Gson gson = new Gson();
+        gson.fromJson(json, QuestionAnswer.class);
+
         Collection<QuestionAnswer> questionAnswerCollection = new ArrayList<>();
 
         QuestionAnswer questionAnswer = new QuestionAnswer(

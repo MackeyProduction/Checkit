@@ -31,12 +31,12 @@ public class UserSessionRepository implements IUserSessionRepository {
 
     @Override
     public Collection getAll() {
-        return new UserSessionResponse(new HttpResponse(new HttpRequest(new Endpoint("/sessions")), new ArrayList<JSONObject>()), new ArrayList<UserSession>()).getCollection();
+        return new UserSessionResponse(new HttpResponse(new HttpRequest(new Endpoint("/sessions")), ""), new ArrayList<UserSession>()).getCollection();
     }
 
     @Override
     public Collection<UserSession> getByUserId(int id) {
-        return new UserSessionResponse(new HttpResponse(new HttpRequest(new Endpoint("/login")), new ArrayList<JSONObject>()), new ArrayList<UserSession>()).getCollection();
+        return new UserSessionResponse(new HttpResponse(new HttpRequest(new Endpoint("/login")), ""), new ArrayList<UserSession>()).getCollection();
     }
 
     @Override
