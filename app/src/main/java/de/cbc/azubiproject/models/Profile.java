@@ -4,15 +4,20 @@ import de.cbc.azubiproject.interfaces.IProfile;
 
 public class Profile implements IProfile {
     private int profileId;
-    private String firstName, lastName, email, birthdate;
+    private String firstName, lastName, email, birthDate;
 
-    public Profile(int profileId, String firstName, String lastName, String email, String birthdate)
+    public Profile()
+    {
+        super();
+    }
+
+    public Profile(int profileId, String firstName, String lastName, String email, String birthDate)
     {
         this.profileId = profileId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.birthdate = birthdate;
+        this.birthDate = birthDate;
     }
 
     @Override
@@ -37,6 +42,6 @@ public class Profile implements IProfile {
 
     @Override
     public String getBirthDate() {
-        return birthdate;
+        return birthDate;
     }
 }

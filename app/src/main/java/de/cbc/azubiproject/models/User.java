@@ -15,6 +15,7 @@ public class User implements IUser {
 
     public User()
     {
+        super();
     }
 
     public User(int userId, String username, String password, String salt, String registerDate, IProfile profile)
