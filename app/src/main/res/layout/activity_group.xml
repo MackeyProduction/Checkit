@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_muster"
     tools:context=".GroupActivity">
 
     <ImageView
         android:id="@+id/imageViewNotecard"
         android:layout_width="0dp"
-        android:layout_height="198dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:minHeight="100dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/karteikarte" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewQuestion"
@@ -28,7 +30,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
-        android:text="Wann war der zweite Weltkrieg?"
+        android:paddingLeft="@dimen/group_cardTextView_paddingLeft"
+        android:paddingRight="@dimen/editText_paddingRight"
+        android:text="Was ist eine Groteskschrift?"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewNotecard"
         app:layout_constraintEnd_toEndOf="@+id/imageViewNotecard"
         app:layout_constraintStart_toStartOf="@+id/imageViewNotecard"
@@ -38,15 +43,16 @@
         android:id="@+id/fabAddQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
+        app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@drawable/hinzufuegen" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabEditQuestion"
@@ -56,11 +62,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="82dp"
         android:clickable="true"
+        app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAddQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:srcCompat="@drawable/bearbeiten" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabQuestionMode"
@@ -70,9 +77,10 @@
         android:layout_marginEnd="82dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
+        app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAddQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_help" />
+        app:srcCompat="@drawable/quizmodus" />
 </android.support.constraint.ConstraintLayout>

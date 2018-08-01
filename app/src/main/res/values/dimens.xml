@@ -1,3 +1,17 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="editText_minHeight">40dp</dimen>
+    <dimen name="editText_minWidth">40dp</dimen>
+    <dimen name="editText_paddingLeft">10dp</dimen>
+    <dimen name="editText_paddingRight">10dp</dimen>
+    <dimen name="editText_start">32dp</dimen>
+    <dimen name="editText_end">32dp</dimen>
+    <dimen name="groupView_card_minWidth">100dp</dimen>
+    <dimen name="groupView_card_minHeight">100dp</dimen>
+    <dimen name="group_cardTextView_paddingLeft">32dp</dimen>
+    <dimen name="group_cardTextView_paddingRight">32dp</dimen>
+    <dimen name="button_minWidth">60dp</dimen>
+    <dimen name="button_minHeight">60dp</dimen>
+    <dimen name="editText_dialog_minHeight">60dp</dimen>
+    <dimen name="editText_dialog_minWidth">60dp</dimen>
 </resources>

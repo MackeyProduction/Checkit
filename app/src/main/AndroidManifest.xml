@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.cbc.azubiproject.checkit">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/checkit_launcher"
@@ -18,12 +20,19 @@
         </activity>
         <activity
             android:name=".GroupViewActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".GroupActivity" />
+            android:theme="@style/checkit_app_theme" />
+        <activity
+            android:name=".GroupActivity"
+            android:theme="@style/checkit_app_theme" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/checkit_app_theme" />
+        <activity android:name=".QuestionModeActivity"></activity>
     </application>
 
 </manifest>

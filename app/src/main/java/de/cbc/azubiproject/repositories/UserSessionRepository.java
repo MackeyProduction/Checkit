@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import de.cbc.azubiproject.collections.FilterCollection;
+import de.cbc.azubiproject.collections.UserSessionCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
 import de.cbc.azubiproject.http.HttpResponse;
@@ -36,5 +37,10 @@ public class UserSessionRepository implements IUserSessionRepository {
     @Override
     public Collection<UserSession> getByUserId(int id) {
         return new UserSessionResponse(new HttpResponse(new HttpRequest(new Endpoint("/login")), new ArrayList<JSONObject>()), new ArrayList<UserSession>()).getCollection();
+    }
+
+    @Override
+    public UserSessionCollection getRepositories() {
+        return null;
     }
 }

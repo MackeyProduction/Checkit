@@ -1,6 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="300dp"
+    android:minHeight="300dp"
+    android:background="#ffffffff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textViewAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Antwort:\nMultiple Choice"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextQuestion" />
+
+            <EditText
+                android:id="@+id/editTextAnswer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext_dialog"
+                android:ems="10"
+                android:hint="Antwort 1"
+                android:inputType="textPersonName"
+                android:minHeight="@dimen/editText_dialog_minHeight"
+                android:minWidth="@dimen/editText_dialog_minWidth"
+                android:paddingLeft="@dimen/editText_paddingLeft"
+                android:paddingRight="@dimen/editText_paddingRight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
+
+            <EditText
+                android:id="@+id/editTextQuestion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:background="@drawable/rounded_edittext_dialog"
+                android:ems="10"
+                android:hint="Deine Frage"
+                android:inputType="textMultiLine"
+                android:minHeight="120dp"
+                android:paddingLeft="@dimen/editText_paddingLeft"
+                android:paddingRight="@dimen/editText_paddingRight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <TextView
+                android:id="@+id/textViewCreateQuestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="Frage erstellen"
+                android:textColor="@android:color/background_dark"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextAnswer2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext_dialog"
+                android:ems="10"
+                android:hint="Antwort 2"
+                android:inputType="textPersonName"
+                android:minHeight="@dimen/editText_dialog_minHeight"
+                android:minWidth="@dimen/editText_dialog_minWidth"
+                android:paddingLeft="@dimen/editText_paddingLeft"
+                android:paddingRight="@dimen/editText_paddingRight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAnswer" />
+
+            <EditText
+                android:id="@+id/editTextAnswer3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext_dialog"
+                android:ems="10"
+                android:hint="Antwort 3"
+                android:inputType="textPersonName"
+                android:minHeight="@dimen/editText_dialog_minHeight"
+                android:minWidth="@dimen/editText_dialog_minWidth"
+                android:paddingLeft="@dimen/editText_paddingLeft"
+                android:paddingRight="@dimen/editText_paddingRight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAnswer2" />
+
+            <EditText
+                android:id="@+id/editTextAnswer4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext_dialog"
+                android:ems="10"
+                android:hint="Antwort 4"
+                android:inputType="textPersonName"
+                android:minHeight="@dimen/editText_dialog_minHeight"
+                android:minWidth="@dimen/editText_dialog_minWidth"
+                android:paddingLeft="@dimen/editText_paddingLeft"
+                android:paddingRight="@dimen/editText_paddingRight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAnswer3" />
+
+            <TextView
+                android:id="@+id/textViewFreeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:text="Freitext-Antwort"
+                android:textColor="@android:color/background_dark"
+                android:textSize="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAnswer4" />
+
+            <EditText
+                android:id="@+id/editTextAnswerFreeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_edittext_dialog"
+                android:ems="10"
+                android:hint="Deine Antwort"
+                android:inputType="textMultiLine"
+                android:minHeight="120dp"
+                android:paddingLeft="@dimen/editText_paddingLeft"
+                android:paddingRight="@dimen/editText_paddingRight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFreeText" />
+
+            <include
+                layout="@layout/custom_dialog_footer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextAnswerFreeText" />
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

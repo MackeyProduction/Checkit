@@ -4,91 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minWidth="400dp"
-    android:minHeight="400dp"
+    android:minWidth="300dp"
+    android:minHeight="300dp"
     android:background="#ffffffff">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/custom_dialog_header"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
-        android:id="@+id/textViewCreateGroup"
+        android:id="@+id/textViewCreateQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Gruppe erstellen"
-        android:textColor="#ffffffff"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
+        android:layout_marginTop="32dp"
+        android:text="Neue Gruppe"
+        android:textColor="@android:color/background_dark"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewCreateGroupName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Name deiner Gruppe:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
-
     <EditText
-        android:id="@+id/editTextCreateGroupName"
+        android:id="@+id/editTextQuestion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_edittext_dialog"
         android:ems="10"
+        android:hint="Gruppenname"
         android:inputType="textPersonName"
+        android:minHeight="@dimen/editText_dialog_minHeight"
+        android:minWidth="@dimen/editText_dialog_minWidth"
+        android:paddingLeft="@dimen/editText_paddingLeft"
+        android:paddingRight="@dimen/editText_paddingRight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCreateGroupName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCreateQuestion" />
 
     <TextView
-        android:id="@+id/textViewCreateGroupSearchUser"
+        android:id="@+id/textViewAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Teilnehmer hinzufügen:"
-        android:textSize="18sp"
+        android:text="Teilnehmer hinzufügen"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCreateGroupName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuestion" />
 
     <EditText
-        android:id="@+id/editTextCreateGroupSearchUser"
+        android:id="@+id/editTextAnswer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext_dialog"
         android:ems="10"
+        android:hint="Suche"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/btnCreateGroupSearchUser"
+        android:minHeight="@dimen/editText_dialog_minHeight"
+        android:minWidth="@dimen/editText_dialog_minWidth"
+        android:paddingLeft="@dimen/editText_paddingLeft"
+        android:paddingRight="@dimen/editText_paddingRight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCreateGroupSearchUser" />
-
-    <Button
-        android:id="@+id/btnCreateGroupSearchUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:background="#e912abf2"
-        android:text="Suchen"
-        android:textColor="#ffffffff"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editTextCreateGroupSearchUser"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
 
     <include
         layout="@layout/custom_dialog_footer"
@@ -99,6 +82,6 @@
         android:layout_marginTop="82dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCreateGroupSearchUser" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAnswer" />
 
 </android.support.constraint.ConstraintLayout>
