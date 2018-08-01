@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import de.cbc.azubiproject.models.ActionBarHelper;
 
-public class GroupActivity extends AppCompatActivity {
+public class GroupActivity extends MyFancyBBaseActivity {
 
     private TextView questionTextView;
     private ImageView backButton, profileButton;
@@ -19,12 +19,6 @@ public class GroupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group);
-
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.checkit_action_bar_back_button);
-        View view = getSupportActionBar().getCustomView();
 
         questionTextView = (TextView) findViewById(R.id.textViewQuestion);
         Typeface ubuntu = Typeface.createFromAsset(getAssets(), "font/Ubuntu-R.ttf");
@@ -46,5 +40,21 @@ public class GroupActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+}
+
+
+class MyFancyBBaseActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_group);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.checkit_action_bar_back_button);
+        View view = getSupportActionBar().getCustomView();
+
+
     }
 }

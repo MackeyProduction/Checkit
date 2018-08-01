@@ -9,7 +9,7 @@
     android:background="#ffffffff">
 
     <TextView
-        android:id="@+id/textViewCreateGroup"
+        android:id="@+id/textViewCreateQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextCreateGroupName"
+        android:id="@+id/editTextQuestion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -39,10 +39,10 @@
         android:paddingRight="@dimen/editText_paddingRight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCreateGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCreateQuestion" />
 
     <TextView
-        android:id="@+id/textViewAddUser"
+        android:id="@+id/textViewAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -51,10 +51,10 @@
         android:textColor="@android:color/background_dark"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCreateGroupName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuestion" />
 
     <EditText
-        android:id="@+id/editTextCreateGroupSearchUser"
+        android:id="@+id/editTextAnswer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAddUser" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
 
     <include
         layout="@layout/custom_dialog_footer"
@@ -82,6 +82,6 @@
         android:layout_marginTop="82dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCreateGroupSearchUser" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAnswer" />
 
 </android.support.constraint.ConstraintLayout>
