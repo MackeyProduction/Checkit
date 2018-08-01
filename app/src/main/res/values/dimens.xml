@@ -1,3 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="editText_minHeight">40dp</dimen>
+    <dimen name="editText_minWidth">40dp</dimen>
+    <dimen name="editText_paddingLeft">10dp</dimen>
+    <dimen name="editText_paddingRight">10dp</dimen>
+    <dimen name="editText_start">32dp</dimen>
+    <dimen name="editText_end">32dp</dimen>
 </resources>
