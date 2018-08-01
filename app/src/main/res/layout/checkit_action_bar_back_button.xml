@@ -7,10 +7,14 @@
     android:background="@android:color/background_light"
     android:orientation="horizontal">
 
-    <Space
+    <ImageView
+        android:id="@+id/imageViewBackButton"
         android:layout_width="60dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:scaleType="fitStart"
+        app:srcCompat="@drawable/zurueck" />
 
     <ImageView
         android:id="@+id/imageViewLogo"

@@ -10,4 +10,8 @@
     <dimen name="groupView_card_minHeight">100dp</dimen>
     <dimen name="group_cardTextView_paddingLeft">32dp</dimen>
     <dimen name="group_cardTextView_paddingRight">32dp</dimen>
+    <dimen name="button_minWidth">60dp</dimen>
+    <dimen name="button_minHeight">60dp</dimen>
+    <dimen name="editText_dialog_minHeight">60dp</dimen>
+    <dimen name="editText_dialog_minWidth">60dp</dimen>
 </resources>

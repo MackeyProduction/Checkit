@@ -23,13 +23,16 @@
             android:theme="@style/checkit_app_theme" />
         <activity
             android:name=".GroupActivity"
-            android:theme="@style/checkit_app_theme">
-        </activity>
+            android:theme="@style/checkit_app_theme" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/checkit_app_theme" />
+        <activity android:name=".QuestionModeActivity"></activity>
     </application>
 
 </manifest>
