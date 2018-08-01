@@ -20,8 +20,11 @@
         </activity>
         <activity
             android:name=".GroupViewActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".GroupActivity" />
+            android:theme="@style/checkit_app_theme" />
+        <activity
+            android:name=".GroupActivity"
+            android:theme="@style/checkit_app_theme">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"

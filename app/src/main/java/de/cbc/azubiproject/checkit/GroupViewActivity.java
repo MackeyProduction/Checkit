@@ -2,6 +2,7 @@ package de.cbc.azubiproject.checkit;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -23,6 +24,11 @@ public class GroupViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.checkit_action_bar);
+        View view = getSupportActionBar().getCustomView();
 
         // set login state
         loggedIn = getIntent().getBooleanExtra(LoginActivity.LOGIN_STATE, false);
