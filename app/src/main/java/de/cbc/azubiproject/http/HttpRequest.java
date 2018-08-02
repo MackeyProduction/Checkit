@@ -1,5 +1,7 @@
 package de.cbc.azubiproject.http;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -64,7 +66,8 @@ public class HttpRequest implements IHttpRequest {
             Response response = client.newCall(request).execute();
 
             if (response.isSuccessful()) {
-                return gson.fromJson(response.message(), HttpResponse.class);
+                System.out.println( "response: " +response.body().string());
+                return gson.fromJson(response.body().string(), HttpResponse.class);
             }
         } catch (IOException e) {
             e.printStackTrace();

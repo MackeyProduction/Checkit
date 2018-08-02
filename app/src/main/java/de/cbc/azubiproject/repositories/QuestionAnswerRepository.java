@@ -24,7 +24,7 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     public QuestionAnswerRepository(Collection<QuestionAnswer> questionAnswerCollection)
     {
-        this.questionAnswerCollection = questionAnswerCollection;
+        //this.questionAnswerCollection = (Collection<QuestionAnswer>) new QuestionAnswerResponse(new HttpRequest(new Endpoint("/questionAnswer.php")), questionAnswerCollection).getCollection();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     public Collection<QuestionAnswer> getByGroupId(int id)
     {
-        return new QuestionAnswerResponse(new HttpRequest(new Endpoint(String.format("/group/%s/questions", id))), questionAnswerCollection).getCollection();
+        return new QuestionAnswerResponse(new HttpRequest(new Endpoint(String.format("/questionAnswer.php?groupId=%s", id))), questionAnswerCollection).getCollection();
     }
 
     public QuestionAnswerCollection getRepositories()
@@ -45,6 +45,6 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     @Override
     public Collection getAll() {
-        return new QuestionAnswerResponse(new HttpRequest(new Endpoint("/questions")), questionAnswerCollection).getCollection();
+        return questionAnswerCollection;
     }
 }

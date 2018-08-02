@@ -8,6 +8,6 @@ import java.util.Collection;
 import de.cbc.azubiproject.http.HttpRequest;
 
 public interface IHttpResponse {
-    public String getStatusCode();
-    public Collection getResponse();
+    String getStatusCode();
+    Collection getResponse();
 }
