@@ -11,14 +11,14 @@ import de.cbc.azubiproject.interfaces.IUser;
 public class User implements IUser {
     private int userId;
     private String username, password, salt, registerDate;
-    private IProfile profile;
+    private Profile profile;
 
     public User()
     {
         super();
     }
 
-    public User(int userId, String username, String password, String salt, String registerDate, IProfile profile)
+    public User(int userId, String username, String password, String salt, String registerDate, Profile profile)
     {
         this.userId = userId;
         this.username = username;
@@ -54,7 +54,7 @@ public class User implements IUser {
     }
 
     @Override
-    public IProfile getProfile() {
+    public Profile getProfile() {
         return profile;
     }
 }

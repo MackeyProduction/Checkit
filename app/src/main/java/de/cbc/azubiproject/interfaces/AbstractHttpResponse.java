@@ -8,19 +8,19 @@ import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.http.HttpResponse;
 
 public abstract class AbstractHttpResponse {
-    private IHttpResponse response;
+    private IHttpRequest request;
     private Collection collection;
 
-    public AbstractHttpResponse(IHttpResponse response, Collection collection)
+    public AbstractHttpResponse(IHttpRequest request, Collection collection)
     {
-        this.response = response;
+        this.request = request;
         this.collection = collection;
     }
 
     public Collection getCollection()
     {
-        return parse(response.getJson(), collection);
+        return parse(request.getRequest(), collection);
     }
 
-    protected abstract Collection parse(String json, Collection container);
+    protected abstract Collection parse(HttpResponse httpResponse, Collection container);
 }

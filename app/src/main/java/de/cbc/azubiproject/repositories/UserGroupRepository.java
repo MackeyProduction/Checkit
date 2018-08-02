@@ -29,7 +29,7 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     public UserGroupRepository(Collection<UserGroup> userGroupCollection)
     {
-        this.userGroupCollection = userGroupCollection;
+        this.userGroupCollection = (Collection<UserGroup>) getAll();
         this.gson = new Gson();
     }
 
@@ -40,12 +40,17 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public Collection getAll() {
-        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint("/group")), ""), userGroupCollection).getCollection();
+        return new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection).getCollection();
     }
 
     @Override
     public Collection<UserGroup> getByGroupId(int id) {
-        return new UserGroupResponse(new HttpResponse(new HttpRequest(new Endpoint(String.format("/group/%s", id))), ""), userGroupCollection).getCollection();
+        return new UserGroupResponse(new HttpRequest(new Endpoint(String.format("/userGroups.php?groupId=%s", id))), userGroupCollection).getCollection();
+    }
+
+    public Collection<UserGroup> getByUsername(String username)
+    {
+        return new FilterCollection(userGroupCollection, userGroupCollection -> userGroupCollection.getUser().getUsername().equals(username)).getCollection();
     }
 
     public UserGroupCollection getRepositories()
@@ -54,7 +59,7 @@ public class UserGroupRepository implements IUserGroupRepository {
     }
 
     @Override
-    public boolean createNewGroup(Collection<UserGroup> userGroupCollection) {
-        return new HttpRequest(new Endpoint("/group")).postRequest(gson.toJson(userGroupCollection));
+    public HttpResponse createNewGroup(Collection<UserGroup> userGroupCollection) {
+        return new HttpRequest(new Endpoint("/userGroups.php")).postRequest(gson.toJson(userGroupCollection));
     }
 }

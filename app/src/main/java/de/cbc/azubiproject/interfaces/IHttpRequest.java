@@ -6,8 +6,10 @@ import org.json.JSONObject;
 
 import java.util.Collection;
 
+import de.cbc.azubiproject.http.HttpResponse;
+
 public interface IHttpRequest {
-    public String getRequest();
-    public boolean postRequest(String json);
-    public boolean deleteRequest(int id);
+    public HttpResponse getRequest();
+    public HttpResponse postRequest(String json);
+    public HttpResponse deleteRequest(int id);
 }

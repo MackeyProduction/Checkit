@@ -1,6 +1,5 @@
 package de.cbc.azubiproject.models;
 
-import java.security.acl.Group;
 import java.util.Collection;
 
 import de.cbc.azubiproject.interfaces.IGroup;
@@ -9,10 +8,10 @@ import de.cbc.azubiproject.interfaces.IUserGroup;
 
 public class UserGroup implements IUserGroup {
     private int userGroupId;
-    private IUser user;
-    private IGroup group;
+    private User user;
+    private Group group;
 
-    public UserGroup(int userGroupId, IUser user, IGroup group)
+    public UserGroup(int userGroupId, User user, Group group)
     {
         this.userGroupId = userGroupId;
         this.user = user;
@@ -25,12 +24,12 @@ public class UserGroup implements IUserGroup {
     }
 
     @Override
-    public IUser getUser() {
+    public User getUser() {
         return user;
     }
 
     @Override
-    public IGroup getGroup() {
+    public Group getGroup() {
         return group;
     }
 }

@@ -49,7 +49,7 @@ public class UserGroupToJson {
         userGroupCollection.addAll(Arrays.asList(userGroups));
 
         // creating repositories
-        UserRepository userRepository = new UserRepository(userCollection);
+        //UserRepository userRepository = new UserRepository(userCollection);
         GroupRepository groupRepository = new GroupRepository(groupCollection);
         UserGroupRepository userGroupRepository = new UserGroupRepository(userGroupCollection);
 

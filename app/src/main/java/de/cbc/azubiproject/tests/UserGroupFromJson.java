@@ -1,29 +1,35 @@
 package de.cbc.azubiproject.tests;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.Collection;
 import java.util.List;
 
+import de.cbc.azubiproject.containers.GroupContainer;
+import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
+import de.cbc.azubiproject.http.HttpResponse;
 import de.cbc.azubiproject.models.Profile;
 import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.User;
 import de.cbc.azubiproject.models.UserGroup;
+import de.cbc.azubiproject.repositories.UserGroupRepository;
+import de.cbc.azubiproject.repositories.UserRepository;
 
 public class UserGroupFromJson {
     public static void main(String[] args)
     {
-        String json = new HttpRequest(new Endpoint("/group.php")).getRequest();
+        GroupContainer groupContainer = new GroupFacade().getContainer();
+        List<UserGroup> userGroups = (List<UserGroup>)groupContainer.getUserGroupCollection().getByUsername("vorbrugg");
 
-        Gson gson = new Gson();
-        //List<UserGroup> userGroup = gson.fromJson(json, new TypeToken<List<UserGroup>>(){}.getType());
-        User user = gson.fromJson("{'userId':'1','username':'anheier','password':'$5$11$0hpI86LSfvhS6fTn57B0QJ1xJgHYINArlw.tH5nGcx.','salt':'jZy7VP7bAGup2mgsLBDP','registerDate':'2018-07-29 00:00:00','Profile':{'profileId':'1','firstName':'Til','lastName':'Anheier','email':'til.anheier@cbc.de','birthDate':'1996-09-07'}}", User.class);
+        UserRepository userRepository = groupContainer.getUserGroupCollection().getRepositories().getUserRepository();
+        Collection<User> a = userRepository.getAll();
 
-        //System.out.println(json);
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        System.out.println(user.getProfile().getProfileId());
+        System.out.println(userRepository.getByUsername("anheier").getUserId());
+        System.out.println(userGroups.get(0).getUserGroupId());
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.models.ActionBarHelper;
 import de.cbc.azubiproject.models.ActionBarNoBackButton;
@@ -33,8 +34,8 @@ public class GroupViewActivity extends ActionBarNoBackButton {
         if (loggedIn) {
             setContentView(R.layout.activity_group_view);
         } else {
-            GroupFacade groupFacade = new GroupFacade();
-            Collection<QuestionAnswer> questionAnswerCollection = groupFacade.getContainer().getQuestionAnswerCollection().getByGroupId(1);
+            GroupContainer groupContainer = new GroupFacade().getContainer();
+            Collection<QuestionAnswer> questionAnswerCollection = groupContainer.getQuestionAnswerCollection().getByGroupId(1);
 
             // testing groups
             for (int i = 0; i < questionAnswerCollection.size(); i++) {

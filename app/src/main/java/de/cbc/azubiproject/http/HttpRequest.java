@@ -27,14 +27,16 @@ public class HttpRequest implements IHttpRequest {
     private Endpoint endpoint;
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient client;
+    private Gson gson;
 
     public HttpRequest(Endpoint endpoint) {
         this.endpoint = endpoint;
         this.client = new OkHttpClient();
+        this.gson = new Gson();
     }
 
     @Override
-    public String getRequest() {
+    public HttpResponse getRequest() {
         String responseString = "";
 
         try {
@@ -48,11 +50,11 @@ public class HttpRequest implements IHttpRequest {
             e.printStackTrace();
         }
 
-        return responseString;
+        return gson.fromJson(responseString, HttpResponse.class);
     }
 
     @Override
-    public boolean postRequest(String json) {
+    public HttpResponse postRequest(String json) {
         try {
             RequestBody body = RequestBody.create(JSON, json);
             Request request = new Request.Builder()
@@ -62,17 +64,17 @@ public class HttpRequest implements IHttpRequest {
             Response response = client.newCall(request).execute();
 
             if (response.isSuccessful()) {
-                return true;
+                return gson.fromJson(response.message(), HttpResponse.class);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return gson.fromJson("{'statusCode':'5001','response':'Es ist ein unerwarteter Fehler aufgetreten.'}", HttpResponse.class);
     }
 
     @Override
-    public boolean deleteRequest(int id) {
+    public HttpResponse deleteRequest(int id) {
         try {
             HttpUrl route = HttpUrl.parse(endpoint.getEndpoint())
                     .newBuilder()
@@ -85,12 +87,12 @@ public class HttpRequest implements IHttpRequest {
             Response response = client.newCall(request).execute();
 
             if (response.isSuccessful()) {
-                return true;
+                return gson.fromJson(response.message(), HttpResponse.class);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return gson.fromJson("{'statusCode':'5001','response':'Es ist ein unerwarteter Fehler aufgetreten.'}", HttpResponse.class);
     }
 }
