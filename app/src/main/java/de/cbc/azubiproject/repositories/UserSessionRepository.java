@@ -32,7 +32,7 @@ public class UserSessionRepository implements IUserSessionRepository {
 
     public UserSessionRepository(Collection<UserSession> userSessionCollection)
     {
-        this.userSessionCollection = (Collection<UserSession>) getAll();
+        //this.userSessionCollection = (Collection<UserSession>) getAll();
         this.gson = new Gson();
     }
 

@@ -8,7 +8,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.RetrieveUserGroupTask;
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.collections.UserGroupCollection;
 import de.cbc.azubiproject.http.Endpoint;
@@ -40,7 +42,15 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public Collection getAll() {
-        return new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection).getCollection();
+        try {
+            userGroupCollection = (Collection<UserGroup>) new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection)).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return userGroupCollection;
     }
 
     @Override

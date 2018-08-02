@@ -2,15 +2,20 @@ package de.cbc.azubiproject.checkit;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
@@ -18,11 +23,16 @@ import de.cbc.azubiproject.models.ActionBarHelper;
 import de.cbc.azubiproject.models.ActionBarNoBackButton;
 import de.cbc.azubiproject.models.AddGroupDialog;
 import de.cbc.azubiproject.models.QuestionAnswer;
+import de.cbc.azubiproject.models.UserGroup;
 
 public class GroupViewActivity extends ActionBarNoBackButton {
 
     private boolean pressedOnce;
     private boolean loggedIn;
+    private String username;
+    private ConstraintLayout constraintLayout;
+    private ConstraintSet constraintSet;
+    private TextView textViewHeadline, textViewSubline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +40,48 @@ public class GroupViewActivity extends ActionBarNoBackButton {
 
         // set login state
         loggedIn = getIntent().getBooleanExtra(LoginActivity.LOGIN_STATE, false);
+        //username = getIntent().getStringExtra(LoginActivity.USERNAME);
 
-        if (loggedIn) {
+        constraintSet = new ConstraintSet();
+
+        if (loggedIn && checkInternetConnection()) {
             setContentView(R.layout.activity_group_view);
-        } else {
+
             GroupContainer groupContainer = new GroupFacade().getContainer();
-            Collection<QuestionAnswer> questionAnswerCollection = groupContainer.getQuestionAnswerCollection().getByGroupId(1);
+            List<UserGroup> userGroups = (List<UserGroup>)groupContainer.getUserGroupCollection().getByUsername("vorbrugg");
 
-            // testing groups
-            for (int i = 0; i < questionAnswerCollection.size(); i++) {
-                System.out.println(questionAnswerCollection.iterator().next().isCorrect());
-            }
+            textViewHeadline = (TextView) findViewById(R.id.textViewGroupHeadline);
+            textViewSubline = (TextView) findViewById(R.id.textViewGroupSubline);
 
+            textViewHeadline.setText(userGroups.get(0).getGroup().getGroupName());
+            textViewSubline.setText(userGroups.get(0).getUser().getUsername());
+
+            // listing groups
+            /*for (int i = 0; i < userGroups.size(); i++) {
+                int id = View.generateViewId();
+                int startId = View.generateViewId();
+                int endId = View.generateViewId();
+
+                constraintLayout = (ConstraintLayout) findViewById(R.id.constraintGroupView);
+
+                ImageView imageViewBackground = new ImageView(this);
+                imageViewBackground.setId(startId);
+                imageViewBackground.setMinimumHeight(R.dimen.groupView_card_minHeight);
+                imageViewBackground.setMinimumWidth(R.dimen.groupView_card_minWidth);
+                imageViewBackground.setImageResource(R.drawable.rounded_edittext);
+                constraintLayout.addView(imageViewBackground);
+
+                ConstraintLayout.LayoutParams clpImageView = new ConstraintLayout.LayoutParams(0, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                imageViewBackground.setLayoutParams(clpImageView);
+
+                constraintSet.clone(constraintLayout);
+
+                constraintSet.connect(startId, ConstraintSet.TOP, endId, ConstraintSet.BOTTOM, 16);
+                constraintSet.connect(startId, ConstraintSet.START, id, ConstraintSet.END, 16);
+
+                constraintSet.applyTo(constraintLayout);
+            }*/
+        } else {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }

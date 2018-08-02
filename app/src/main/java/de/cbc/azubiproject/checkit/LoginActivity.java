@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean loggedIn = false;
     private TextView forgetPassword;
     public static final String LOGIN_STATE = "de.cbc.checkit.MESSAGE";
+    public static final String USERNAME = "de.cbc.checkit.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
