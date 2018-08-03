@@ -17,6 +17,7 @@ import de.cbc.azubiproject.repositories.UserRepository;
 public class UserGroupToJson {
     public static void main(String[] args)
     {
+        /*
         Collection<User> userCollection = new ArrayList<User>();
         Collection<Group> groupCollection = new ArrayList<Group>();
         Collection<UserGroup> userGroupCollection = new ArrayList<UserGroup>();
@@ -59,6 +60,6 @@ public class UserGroupToJson {
         UserGroup userGroup = (UserGroup) userGroupRepository.getById(1);
 
         System.out.println(json);
-        System.out.println(userGroup.getUser().getUsername());
+        System.out.println(userGroup.getUser().getUsername());*/
     }
 }

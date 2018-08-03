@@ -23,13 +23,13 @@ import de.cbc.azubiproject.repositories.UserRepository;
 public class UserGroupFromJson {
     public static void main(String[] args)
     {
-        GroupContainer groupContainer = new GroupFacade().getContainer();
+        /*GroupContainer groupContainer = new GroupFacade().getContainer();
         List<UserGroup> userGroups = (List<UserGroup>)groupContainer.getUserGroupCollection().getByUsername("vorbrugg");
 
         UserRepository userRepository = groupContainer.getUserGroupCollection().getRepositories().getUserRepository();
         Collection<User> a = userRepository.getAll();
 
         System.out.println(userRepository.getByUsername("anheier").getUserId());
-        System.out.println(userGroups.get(0).getUserGroupId());
+        System.out.println(userGroups.get(0).getUserGroupId());*/
     }
 }

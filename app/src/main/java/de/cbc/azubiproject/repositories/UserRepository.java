@@ -1,7 +1,10 @@
 package de.cbc.azubiproject.repositories;
 
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.RetrieveUserSessionTask;
+import de.cbc.azubiproject.asynctasks.RetrieveUserTask;
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
@@ -12,11 +15,17 @@ import de.cbc.azubiproject.models.User;
 import de.cbc.azubiproject.models.UserGroup;
 
 public class UserRepository implements IUserRepository {
-    private Collection<User> collection;
+    private static Collection<User> collection = null;
 
-    public UserRepository(Collection<User> collection)
+    protected UserRepository() {
+    }
+
+    public static Collection<User> getInstance() throws InterruptedException, ExecutionException
     {
-        this.collection = new UserResponse(new HttpRequest(new Endpoint("/users.php")), collection).getCollection();
+        if (collection == null) {
+            collection = (Collection<User>) new RetrieveUserTask().execute(new UserResponse(new HttpRequest(new Endpoint("/users.php")), collection)).get();
+        }
+        return collection;
     }
 
     @Override

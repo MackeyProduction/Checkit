@@ -1,50 +1,41 @@
 package de.cbc.azubiproject.repositories;
 
-import com.android.internal.util.Predicate;
-
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.RetrieveQuestionAnswerTask;
 import de.cbc.azubiproject.collections.FilterCollection;
-import de.cbc.azubiproject.collections.QuestionAnswerCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
-import de.cbc.azubiproject.http.HttpResponse;
 import de.cbc.azubiproject.http.QuestionAnswerResponse;
-import de.cbc.azubiproject.interfaces.IQuestionAnswer;
 import de.cbc.azubiproject.interfaces.IQuestionAnswerRepository;
-import de.cbc.azubiproject.interfaces.IRepository;
-import de.cbc.azubiproject.interfaces.IResponseRepository;
 import de.cbc.azubiproject.models.QuestionAnswer;
 
 public class QuestionAnswerRepository implements IQuestionAnswerRepository {
-    private Collection<QuestionAnswer> questionAnswerCollection;
+    private static Collection<QuestionAnswer> questionAnswerCollection = null;
 
-    public QuestionAnswerRepository(Collection<QuestionAnswer> questionAnswerCollection)
+    public static Collection<QuestionAnswer> getInstance() throws InterruptedException, ExecutionException
     {
-        //this.questionAnswerCollection = (Collection<QuestionAnswer>) new QuestionAnswerResponse(new HttpRequest(new Endpoint("/questionAnswer.php")), questionAnswerCollection).getCollection();
+        if (questionAnswerCollection == null) {
+            questionAnswerCollection = (Collection<QuestionAnswer>) new RetrieveQuestionAnswerTask().execute(new QuestionAnswerResponse(new HttpRequest(new Endpoint("/questionAnswer.php")), questionAnswerCollection)).get();
+        }
+        return questionAnswerCollection;
+    }
+
+    public QuestionAnswerRepository() {
     }
 
     @Override
-    public Object getById(final int id)
-    {
+    public Object getById(final int id) {
         return new FilterCollection(questionAnswerCollection, questionAnswer -> questionAnswer.questionAnswerId() == id);
     }
 
-    public Collection<QuestionAnswer> getByGroupId(int id)
-    {
-        return new QuestionAnswerResponse(new HttpRequest(new Endpoint(String.format("/questionAnswer.php?groupId=%s", id))), questionAnswerCollection).getCollection();
-    }
-
-    public QuestionAnswerCollection getRepositories()
-    {
-        return new QuestionAnswerCollection((Collection<QuestionAnswer>) getAll());
+    public Collection<QuestionAnswer> getByGroupId(int id) throws InterruptedException, ExecutionException {
+        return new RetrieveQuestionAnswerTask().execute(new QuestionAnswerResponse(new HttpRequest(new Endpoint(String.format("/questionAnswer.php?groupId=%s", id))), questionAnswerCollection)).get();
     }
 
     @Override
     public Collection getAll() {
-        return questionAnswerCollection;
+        return new FilterCollection(questionAnswerCollection, questionAnswer -> questionAnswer.questionAnswerId() > 0).getCollection();
     }
 }

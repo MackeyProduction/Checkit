@@ -1,7 +1,9 @@
 package de.cbc.azubiproject.repositories;
 
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.RetrieveQuestionRepository;
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
@@ -10,11 +12,16 @@ import de.cbc.azubiproject.interfaces.IRepository;
 import de.cbc.azubiproject.models.Question;
 
 public class QuestionRepository implements IRepository {
-    private Collection<Question> questionCollection;
+    private static Collection<Question> questionCollection = null;
 
-    public QuestionRepository(Collection<Question> questionCollection)
-    {
-        this.questionCollection = (Collection<Question>) new QuestionResponse(new HttpRequest(new Endpoint("/questions.php")), questionCollection).getCollection();
+    private QuestionRepository() {
+    }
+
+    public static Collection<Question> getInstance() throws ExecutionException, InterruptedException {
+        if (questionCollection == null) {
+            questionCollection = (Collection<Question>) new RetrieveQuestionRepository().execute(new QuestionResponse(new HttpRequest(new Endpoint("/questions.php")), questionCollection)).get();
+        }
+        return questionCollection;
     }
 
     @Override

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
@@ -47,14 +48,22 @@ public class GroupViewActivity extends ActionBarNoBackButton {
         if (loggedIn && checkInternetConnection()) {
             setContentView(R.layout.activity_group_view);
 
-            GroupContainer groupContainer = new GroupFacade().getContainer();
-            List<UserGroup> userGroups = (List<UserGroup>)groupContainer.getUserGroupCollection().getByUsername("vorbrugg");
+            try {
+                GroupContainer groupContainer = new GroupFacade().getContainer();
 
-            textViewHeadline = (TextView) findViewById(R.id.textViewGroupHeadline);
-            textViewSubline = (TextView) findViewById(R.id.textViewGroupSubline);
+                List<UserGroup> userGroups = (List<UserGroup>)groupContainer.getUserGroupCollection().getByUsername("vorbrugg");
 
-            textViewHeadline.setText(userGroups.get(0).getGroup().getGroupName());
-            textViewSubline.setText(userGroups.get(0).getUser().getUsername());
+                textViewHeadline = (TextView) findViewById(R.id.textViewGroupHeadline);
+                textViewSubline = (TextView) findViewById(R.id.textViewGroupSubline);
+
+                textViewHeadline.setText(userGroups.get(0).getGroup().getGroupName());
+                textViewSubline.setText(userGroups.get(0).getUser().getUsername());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
 
             // listing groups
             /*for (int i = 0; i < userGroups.size(); i++) {

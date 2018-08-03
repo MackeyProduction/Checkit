@@ -1,7 +1,9 @@
 package de.cbc.azubiproject.repositories;
 
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.RetrieveSessionTask;
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
@@ -10,11 +12,16 @@ import de.cbc.azubiproject.interfaces.IRepository;
 import de.cbc.azubiproject.models.Session;
 
 public class SessionRepository implements IRepository {
-    private Collection<Session> sessionCollection;
+    private static Collection<Session> sessionCollection = null;
 
-    public SessionRepository(Collection<Session> sessionCollection)
-    {
-        this.sessionCollection = new SessionResponse(new HttpRequest(new Endpoint("/sessions.php")), sessionCollection).getCollection();
+    private SessionRepository() {
+    }
+
+    public static Collection<Session> getInstance() throws ExecutionException, InterruptedException {
+        if (sessionCollection == null) {
+            sessionCollection = (Collection<Session>) new RetrieveSessionTask().execute(new SessionResponse(new HttpRequest(new Endpoint("/sessions.php")), sessionCollection)).get();
+        }
+        return sessionCollection;
     }
 
     @Override

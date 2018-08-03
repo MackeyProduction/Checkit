@@ -4,7 +4,9 @@ import com.android.internal.util.Predicate;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.RetrieveAnswerTask;
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.http.AnswerResponse;
 import de.cbc.azubiproject.http.Endpoint;
@@ -13,11 +15,16 @@ import de.cbc.azubiproject.interfaces.IRepository;
 import de.cbc.azubiproject.models.Answer;
 
 public class AnswerRepository implements IRepository {
-    private Collection<Answer> answerCollection;
+    private static Collection<Answer> answerCollection = null;
 
-    public AnswerRepository(Collection<Answer> answerCollection)
-    {
-        this.answerCollection = (Collection<Answer>) new AnswerResponse(new HttpRequest(new Endpoint("/answers.php")), new ArrayList<Answer>()).getCollection();
+    protected AnswerRepository() {
+    }
+
+    public static Collection<Answer> getInstance() throws ExecutionException, InterruptedException {
+        if (answerCollection == null) {
+            answerCollection = (Collection<Answer>) new RetrieveAnswerTask().execute(new AnswerResponse(new HttpRequest(new Endpoint("/answers.php")), new ArrayList<Answer>())).get();
+        }
+        return answerCollection;
     }
 
     @Override

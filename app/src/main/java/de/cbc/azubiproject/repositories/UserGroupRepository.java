@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.HttpPostTask;
 import de.cbc.azubiproject.asynctasks.RetrieveUserGroupTask;
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.collections.UserGroupCollection;
@@ -26,13 +27,18 @@ import de.cbc.azubiproject.models.User;
 import de.cbc.azubiproject.models.UserGroup;
 
 public class UserGroupRepository implements IUserGroupRepository {
-    private Collection<UserGroup> userGroupCollection;
-    private Gson gson;
+    private static Collection<UserGroup> userGroupCollection = null;
+    private static Gson gson = null;
 
-    public UserGroupRepository(Collection<UserGroup> userGroupCollection)
-    {
-        this.userGroupCollection = (Collection<UserGroup>) getAll();
-        this.gson = new Gson();
+    protected UserGroupRepository() {
+    }
+
+    public static Collection<UserGroup> getInstance() throws ExecutionException, InterruptedException {
+        if (userGroupCollection == null) {
+            userGroupCollection = (Collection<UserGroup>) new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection)).get();
+            gson = new Gson();
+        }
+        return userGroupCollection;
     }
 
     @Override
@@ -42,20 +48,12 @@ public class UserGroupRepository implements IUserGroupRepository {
 
     @Override
     public Collection getAll() {
-        try {
-            userGroupCollection = (Collection<UserGroup>) new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection)).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        return userGroupCollection;
+        return new FilterCollection(userGroupCollection, userGroup -> userGroup.getUserGroupId() > 0).getCollection();
     }
 
     @Override
-    public Collection<UserGroup> getByGroupId(int id) {
-        return new UserGroupResponse(new HttpRequest(new Endpoint(String.format("/userGroups.php?groupId=%s", id))), userGroupCollection).getCollection();
+    public Collection<UserGroup> getByGroupId(int id) throws ExecutionException, InterruptedException {
+        return (Collection<UserGroup>) new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint(String.format("/userGroups.php?groupId=%s", id))), userGroupCollection)).get();
     }
 
     public Collection<UserGroup> getByUsername(String username)
@@ -63,13 +61,8 @@ public class UserGroupRepository implements IUserGroupRepository {
         return new FilterCollection(userGroupCollection, userGroupCollection -> userGroupCollection.getUser().getUsername().equals(username)).getCollection();
     }
 
-    public UserGroupCollection getRepositories()
-    {
-        return new UserGroupCollection(getAll());
-    }
-
     @Override
-    public HttpResponse createNewGroup(Collection<UserGroup> userGroupCollection) {
-        return new HttpRequest(new Endpoint("/userGroups.php")).postRequest(gson.toJson(userGroupCollection));
+    public boolean createNewGroup(Collection<UserGroup> userGroupCollection) throws ExecutionException, InterruptedException {
+        return new HttpPostTask().execute(new HttpRequest(new Endpoint("/userGroups.php")).postRequest(gson.toJson(userGroupCollection))).get() != 5001;
     }
 }
