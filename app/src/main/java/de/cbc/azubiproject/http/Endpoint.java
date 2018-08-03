@@ -3,7 +3,7 @@ package de.cbc.azubiproject.http;
 import de.cbc.azubiproject.interfaces.IEndpoint;
 
 public class Endpoint implements IEndpoint {
-    private final String ENDPOINT = "http://192.168.178.55/checkit-api";
+    private final String ENDPOINT = "http://checkit-api.anheier.box.rtlnm.de";
     private String endpoint, key;
 
     public Endpoint(String endpoint)

@@ -13,12 +13,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
+import org.json.JSONObject;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -35,6 +39,7 @@ public class HttpRequest implements IHttpRequest {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient client;
     private Gson gson;
+    private HttpResponse validate;
 
     public HttpRequest(Endpoint endpoint) {
         this.endpoint = endpoint;
@@ -44,24 +49,19 @@ public class HttpRequest implements IHttpRequest {
 
     @Override
     public HttpResponse getRequest() {
-        String responseString = "";
-
         try {
             Request request = new Request.Builder()
                     .url(endpoint.getEndpoint())
                     .build();
 
             Response response = client.newCall(request).execute();
-            responseString = response.body().string();
 
-            if (response.isSuccessful()) {
-                return gson.fromJson(responseString, HttpResponse.class);
-            }
+            validate = validate(response);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return gson.fromJson("{'statusCode':'5001','response':{'Es ist ein unerwarteter Fehler aufgetreten.'}}", HttpResponse.class);
+        return validate;
     }
 
     @Override
@@ -74,15 +74,12 @@ public class HttpRequest implements IHttpRequest {
                     .build();
             Response response = client.newCall(request).execute();
 
-            if (response.isSuccessful()) {
-                System.out.println("response: " + response.body().string());
-                return gson.fromJson(response.body().string(), HttpResponse.class);
-            }
+            validate = validate(response);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return gson.fromJson("{'statusCode':'5001','response':'Es ist ein unerwarteter Fehler aufgetreten.'}", HttpResponse.class);
+        return validate;
     }
 
     @Override
@@ -98,13 +95,33 @@ public class HttpRequest implements IHttpRequest {
                     .build();
             Response response = client.newCall(request).execute();
 
-            if (response.isSuccessful()) {
-                return gson.fromJson(response.message(), HttpResponse.class);
+            validate = validate(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return validate;
+    }
+
+    private HttpResponse validate(Response response) {
+        try {
+            String responseString = response.body().string();
+            if (responseString != null) {
+                if (response.isSuccessful()) {
+                    System.out.println("response: " + responseString);
+
+                    if (!responseString.equals("")) {
+                        return gson.fromJson(responseString, HttpResponse.class);
+                    }
+                } else {
+                    JsonElement element = gson.fromJson(responseString, JsonElement.class);
+                    System.out.println(element.getAsJsonObject().get("response"));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return gson.fromJson("{'statusCode':'5001','response':'Es ist ein unerwarteter Fehler aufgetreten.'}", HttpResponse.class);
+        return new HttpResponse("5001", null);
     }
 }
