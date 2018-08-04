@@ -25,9 +25,9 @@ public class GroupFacade {
 
     public GroupContainer getContainer() throws ExecutionException, InterruptedException {
         return new GroupContainer(
-                (IQuestionAnswerRepository) QuestionAnswerRepository.getInstance(),
-                (IUserGroupRepository) UserGroupRepository.getInstance(),
-                (IUserSessionRepository) UserSessionRepository.getInstance()
+                QuestionAnswerRepository.getInstance(),
+                UserGroupRepository.getInstance(),
+                UserSessionRepository.getInstance()
         );
     }
 

@@ -13,15 +13,17 @@ import de.cbc.azubiproject.models.Session;
 
 public class SessionRepository implements IRepository {
     private static Collection<Session> sessionCollection = null;
+    private static SessionRepository sessionRepository = null;
 
-    private SessionRepository() {
+    private SessionRepository(Collection<Session> sessions) {
+        sessionCollection = sessions;
     }
 
-    public static Collection<Session> getInstance() throws ExecutionException, InterruptedException {
-        if (sessionCollection == null) {
-            sessionCollection = (Collection<Session>) new RetrieveSessionTask().execute(new SessionResponse(new HttpRequest(new Endpoint("/sessions.php")), sessionCollection)).get();
+    public static SessionRepository getInstance() throws ExecutionException, InterruptedException {
+        if (sessionRepository == null) {
+            sessionRepository = new SessionRepository(new RetrieveSessionTask().execute(new SessionResponse(new HttpRequest(new Endpoint("/sessions.php")), sessionCollection)).get());
         }
-        return sessionCollection;
+        return sessionRepository;
     }
 
     @Override

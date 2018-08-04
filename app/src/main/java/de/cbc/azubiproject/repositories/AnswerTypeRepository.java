@@ -13,15 +13,17 @@ import de.cbc.azubiproject.models.AnswerType;
 
 public class AnswerTypeRepository implements IRepository {
     private static Collection<AnswerType> answerTypeCollection = null;
+    private static AnswerTypeRepository answerTypeRepository = null;
 
-    public AnswerTypeRepository() {
+    public AnswerTypeRepository(Collection<AnswerType> answerTypes) {
+        answerTypeCollection = answerTypes;
     }
 
-    public static Collection<AnswerType> getInstance() throws ExecutionException, InterruptedException {
-        if (answerTypeCollection == null) {
-            answerTypeCollection = (Collection<AnswerType>) new RetrieveAnswerTypeTask().execute(new AnswerTypeResponse(new HttpRequest(new Endpoint("/answerTypes.php")), answerTypeCollection)).get();
+    public static AnswerTypeRepository getInstance() throws ExecutionException, InterruptedException {
+        if (answerTypeRepository == null) {
+            answerTypeRepository = new AnswerTypeRepository(new RetrieveAnswerTypeTask().execute(new AnswerTypeResponse(new HttpRequest(new Endpoint("/answerTypes.php")), answerTypeCollection)).get());
         }
-        return answerTypeCollection;
+        return answerTypeRepository;
     }
 
     @Override

@@ -31,16 +31,18 @@ import de.cbc.azubiproject.models.UserSession;
 
 public class UserSessionRepository implements IUserSessionRepository {
     private static Collection<UserSession> userSessionCollection;
+    private static UserSessionRepository userSessionRepository;
 
-    protected UserSessionRepository() {
+    protected UserSessionRepository(Collection<UserSession> userSessions) {
+        userSessionCollection = userSessions;
     }
 
-    public static Collection<UserSession> getInstance() throws ExecutionException, InterruptedException
+    public static UserSessionRepository getInstance() throws ExecutionException, InterruptedException
     {
-        if (userSessionCollection == null) {
-            userSessionCollection = (Collection<UserSession>) new RetrieveUserSessionTask().execute(new UserSessionResponse(new HttpRequest(new Endpoint("/userSessions.php")), new ArrayList<UserSession>())).get();
+        if (userSessionRepository == null) {
+            userSessionRepository = new UserSessionRepository(new RetrieveUserSessionTask().execute(new UserSessionResponse(new HttpRequest(new Endpoint("/userSessions.php")), new ArrayList<UserSession>())).get());
         }
-        return userSessionCollection;
+        return userSessionRepository;
     }
 
     @Override

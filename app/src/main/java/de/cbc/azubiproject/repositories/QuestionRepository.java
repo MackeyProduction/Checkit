@@ -13,15 +13,17 @@ import de.cbc.azubiproject.models.Question;
 
 public class QuestionRepository implements IRepository {
     private static Collection<Question> questionCollection = null;
+    private static QuestionRepository questionRepository = null;
 
-    private QuestionRepository() {
+    private QuestionRepository(Collection<Question> questions) {
+        questionCollection = questions;
     }
 
-    public static Collection<Question> getInstance() throws ExecutionException, InterruptedException {
-        if (questionCollection == null) {
-            questionCollection = (Collection<Question>) new RetrieveQuestionRepository().execute(new QuestionResponse(new HttpRequest(new Endpoint("/questions.php")), questionCollection)).get();
+    public static QuestionRepository getInstance() throws ExecutionException, InterruptedException {
+        if (questionRepository == null) {
+            questionRepository = new QuestionRepository(new RetrieveQuestionRepository().execute(new QuestionResponse(new HttpRequest(new Endpoint("/questions.php")), questionCollection)).get());
         }
-        return questionCollection;
+        return questionRepository;
     }
 
     @Override

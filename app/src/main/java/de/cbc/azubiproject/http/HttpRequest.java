@@ -19,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -33,13 +34,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.internal.http2.ConnectionShutdownException;
 
-public class HttpRequest implements IHttpRequest {
+public class HttpRequest extends AppCompatActivity implements IHttpRequest {
     private Endpoint endpoint;
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient client;
     private Gson gson;
-    private HttpResponse validate;
+    private HttpResponse validate, httpResponse;
 
     public HttpRequest(Endpoint endpoint) {
         this.endpoint = endpoint;
@@ -104,14 +106,17 @@ public class HttpRequest implements IHttpRequest {
     }
 
     private HttpResponse validate(Response response) {
+        HttpResponse httpResponse = null;
         try {
             String responseString = response.body().string();
             if (responseString != null) {
                 if (response.isSuccessful()) {
                     System.out.println("response: " + responseString);
 
-                    if (!responseString.equals("")) {
-                        return gson.fromJson(responseString, HttpResponse.class);
+                    if (!responseString.equals("") && !responseString.startsWith("<!DOCTYPE html>")) {
+                        httpResponse = gson.fromJson(responseString, HttpResponse.class);
+                    } else {
+                        httpResponse = gson.fromJson("{'responseCode':'5001','response':[{'response':'Es konnte keine Verbindung zum Server aufgebaut werden.'}]}", HttpResponse.class);
                     }
                 } else {
                     JsonElement element = gson.fromJson(responseString, JsonElement.class);
@@ -122,6 +127,6 @@ public class HttpRequest implements IHttpRequest {
             e.printStackTrace();
         }
 
-        return new HttpResponse("5001", null);
+        return httpResponse;
     }
 }

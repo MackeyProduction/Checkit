@@ -13,16 +13,18 @@ import de.cbc.azubiproject.models.QuestionAnswer;
 
 public class QuestionAnswerRepository implements IQuestionAnswerRepository {
     private static Collection<QuestionAnswer> questionAnswerCollection = null;
+    private static QuestionAnswerRepository questionAnswerRepository = null;
 
-    public static Collection<QuestionAnswer> getInstance() throws InterruptedException, ExecutionException
+    public static QuestionAnswerRepository getInstance() throws InterruptedException, ExecutionException
     {
-        if (questionAnswerCollection == null) {
-            questionAnswerCollection = (Collection<QuestionAnswer>) new RetrieveQuestionAnswerTask().execute(new QuestionAnswerResponse(new HttpRequest(new Endpoint("/questionAnswer.php")), questionAnswerCollection)).get();
+        if (questionAnswerRepository == null) {
+            questionAnswerRepository = new QuestionAnswerRepository(new RetrieveQuestionAnswerTask().execute(new QuestionAnswerResponse(new HttpRequest(new Endpoint("/questionAnswer.php")), questionAnswerCollection)).get());
         }
-        return questionAnswerCollection;
+        return questionAnswerRepository;
     }
 
-    public QuestionAnswerRepository() {
+    protected QuestionAnswerRepository(Collection<QuestionAnswer> questionAnswers) {
+        questionAnswerCollection = questionAnswers;
     }
 
     @Override

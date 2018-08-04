@@ -28,10 +28,13 @@ public class QuestionAnswerResponse extends AbstractHttpResponse {
     @Override
     protected Collection parse(HttpResponse httpResponse, Collection container) {
         Gson gson = new Gson();
+        Collection<QuestionAnswer> questions = null;
 
-        List<QuestionAnswer> responseList = (ArrayList<QuestionAnswer>)httpResponse.getResponse();
-        String response = gson.toJson(responseList);
-        Collection<QuestionAnswer> questions = gson.fromJson(response, new TypeToken<List<QuestionAnswer>>(){}.getType());
+        if (Integer.parseInt(httpResponse.getStatusCode()) != 5001) {
+            List<QuestionAnswer> responseList = (ArrayList<QuestionAnswer>)httpResponse.getResponse();
+            String response = gson.toJson(responseList);
+            questions = gson.fromJson(response, new TypeToken<List<QuestionAnswer>>(){}.getType());
+        }
 
         return questions;
     }

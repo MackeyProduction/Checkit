@@ -16,16 +16,18 @@ import de.cbc.azubiproject.models.UserGroup;
 
 public class UserRepository implements IUserRepository {
     private static Collection<User> collection = null;
+    private static UserRepository userRepository = null;
 
-    protected UserRepository() {
+    protected UserRepository(Collection<User> users) {
+        collection = users;
     }
 
-    public static Collection<User> getInstance() throws InterruptedException, ExecutionException
+    public static UserRepository getInstance() throws InterruptedException, ExecutionException
     {
-        if (collection == null) {
-            collection = (Collection<User>) new RetrieveUserTask().execute(new UserResponse(new HttpRequest(new Endpoint("/users.php")), collection)).get();
+        if (userRepository == null) {
+            userRepository = new UserRepository(new RetrieveUserTask().execute(new UserResponse(new HttpRequest(new Endpoint("/users.php")), collection)).get());
         }
-        return collection;
+        return userRepository;
     }
 
     @Override

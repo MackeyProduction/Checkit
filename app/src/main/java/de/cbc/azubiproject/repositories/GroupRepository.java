@@ -15,15 +15,17 @@ import de.cbc.azubiproject.models.Group;
 
 public class GroupRepository implements IRepository {
     private static Collection<Group> groupCollection = null;
+    private static GroupRepository groupRepository = null;
 
-    private GroupRepository() {
+    private GroupRepository(Collection<Group> groups) {
+        groupCollection = groups;
     }
 
-    public static Collection<Group> getInstance() throws ExecutionException, InterruptedException {
-        if (groupCollection == null) {
-            groupCollection = (Collection<Group>) new RetrieveGroupTask().execute(new GroupResponse(new HttpRequest(new Endpoint("/groups.php")), groupCollection)).get();
+    public static GroupRepository getInstance() throws ExecutionException, InterruptedException {
+        if (groupRepository == null) {
+            groupRepository = new GroupRepository(new RetrieveGroupTask().execute(new GroupResponse(new HttpRequest(new Endpoint("/groups.php")), groupCollection)).get());
         }
-        return groupCollection;
+        return groupRepository;
     }
 
     @Override

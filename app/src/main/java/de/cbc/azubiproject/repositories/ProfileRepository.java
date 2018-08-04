@@ -15,15 +15,17 @@ import de.cbc.azubiproject.models.Profile;
 
 public class ProfileRepository implements IRepository {
     private static Collection<Profile> profileCollection = null;
+    private static ProfileRepository profileRepository = null;
 
-    public ProfileRepository() {
+    public ProfileRepository(Collection<Profile> profiles) {
+        profileCollection = profiles;
     }
 
-    public static Collection<Profile> getInstance() throws ExecutionException, InterruptedException {
-        if (profileCollection == null) {
-            profileCollection = (Collection<Profile>) new RetrieveProfileTask().execute(new ProfileResponse(new HttpRequest(new Endpoint("/profiles.php")), profileCollection)).get();
+    public static ProfileRepository getInstance() throws ExecutionException, InterruptedException {
+        if (profileRepository == null) {
+            profileRepository = new ProfileRepository(new RetrieveProfileTask().execute(new ProfileResponse(new HttpRequest(new Endpoint("/profiles.php")), profileCollection)).get());
         }
-        return profileCollection;
+        return profileRepository;
     }
 
     @Override

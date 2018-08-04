@@ -28,17 +28,19 @@ import de.cbc.azubiproject.models.UserGroup;
 
 public class UserGroupRepository implements IUserGroupRepository {
     private static Collection<UserGroup> userGroupCollection = null;
+    private static UserGroupRepository userGroupRepository = null;
     private static Gson gson = null;
 
-    protected UserGroupRepository() {
+    protected UserGroupRepository(Collection<UserGroup> userGroups) {
+        userGroupCollection = userGroups;
     }
 
-    public static Collection<UserGroup> getInstance() throws ExecutionException, InterruptedException {
-        if (userGroupCollection == null) {
-            userGroupCollection = (Collection<UserGroup>) new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection)).get();
+    public static UserGroupRepository getInstance() throws ExecutionException, InterruptedException {
+        if (userGroupRepository == null) {
+            userGroupRepository = new UserGroupRepository(new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection)).get());
             gson = new Gson();
         }
-        return userGroupCollection;
+        return userGroupRepository;
     }
 
     @Override

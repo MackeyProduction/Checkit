@@ -3,13 +3,16 @@ package de.cbc.azubiproject.containers;
 import de.cbc.azubiproject.interfaces.IQuestionAnswerRepository;
 import de.cbc.azubiproject.interfaces.IUserGroupRepository;
 import de.cbc.azubiproject.interfaces.IUserSessionRepository;
+import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
+import de.cbc.azubiproject.repositories.UserGroupRepository;
+import de.cbc.azubiproject.repositories.UserSessionRepository;
 
 public class GroupContainer {
     private IQuestionAnswerRepository questionAnswer;
-    private IUserGroupRepository userGroup;
-    private IUserSessionRepository userSession;
+    private UserGroupRepository userGroup;
+    private UserSessionRepository userSession;
 
-    public GroupContainer(IQuestionAnswerRepository questionAnswer, IUserGroupRepository userGroup, IUserSessionRepository userSession)
+    public GroupContainer(IQuestionAnswerRepository questionAnswer, UserGroupRepository userGroup, UserSessionRepository userSession)
     {
         this.questionAnswer = questionAnswer;
         this.userGroup = userGroup;
@@ -20,11 +23,11 @@ public class GroupContainer {
         return questionAnswer;
     }
 
-    public IUserGroupRepository getUserGroupCollection() {
+    public UserGroupRepository getUserGroupCollection() {
         return userGroup;
     }
 
-    public IUserSessionRepository getUserSessionCollection() {
+    public UserSessionRepository getUserSessionCollection() {
         return userSession;
     }
 }

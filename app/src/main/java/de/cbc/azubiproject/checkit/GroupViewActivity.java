@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,6 +26,7 @@ import de.cbc.azubiproject.models.ActionBarNoBackButton;
 import de.cbc.azubiproject.models.AddGroupDialog;
 import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.UserGroup;
+import okhttp3.internal.http2.ConnectionShutdownException;
 
 public class GroupViewActivity extends ActionBarNoBackButton {
 
@@ -62,6 +64,8 @@ public class GroupViewActivity extends ActionBarNoBackButton {
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (NullPointerException e) {
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
 
