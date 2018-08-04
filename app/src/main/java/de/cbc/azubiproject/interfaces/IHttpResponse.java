@@ -9,5 +9,6 @@ import de.cbc.azubiproject.http.HttpRequest;
 
 public interface IHttpResponse {
     String getStatusCode();
+    String getStatusMessage();
     Collection getResponse();
 }

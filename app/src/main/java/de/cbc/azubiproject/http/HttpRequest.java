@@ -36,7 +36,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.internal.http2.ConnectionShutdownException;
 
-public class HttpRequest extends AppCompatActivity implements IHttpRequest {
+public class HttpRequest implements IHttpRequest {
     private Endpoint endpoint;
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private OkHttpClient client;
@@ -116,11 +116,12 @@ public class HttpRequest extends AppCompatActivity implements IHttpRequest {
                     if (!responseString.equals("") && !responseString.startsWith("<!DOCTYPE html>")) {
                         httpResponse = gson.fromJson(responseString, HttpResponse.class);
                     } else {
-                        httpResponse = gson.fromJson("{'responseCode':'5001','response':[{'response':'Es konnte keine Verbindung zum Server aufgebaut werden.'}]}", HttpResponse.class);
+                        httpResponse = gson.fromJson("{'responseCode':'5001','response':[{'responseMessage':'Es konnte keine Verbindung zum Server aufgebaut werden.'}]}", HttpResponse.class);
                     }
                 } else {
                     JsonElement element = gson.fromJson(responseString, JsonElement.class);
                     System.out.println(element.getAsJsonObject().get("response"));
+                    httpResponse = gson.fromJson(responseString, HttpResponse.class);
                 }
             }
         } catch (IOException e) {
