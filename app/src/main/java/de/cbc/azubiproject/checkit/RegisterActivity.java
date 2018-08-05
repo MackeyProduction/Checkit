@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerHeader.setTypeface(ubuntu);
     }
 
-    public void btnRegister_onClick(View view)
+    /*public void btnRegister_onClick(View view)
     {
         username = ((EditText) findViewById(R.id.editTextUsername)).getText().toString();
         password = ((EditText) findViewById(R.id.editTextPassword)).getText().toString();
@@ -90,5 +90,5 @@ public class RegisterActivity extends AppCompatActivity {
         catch(ParseException e){
             return false;
         }
-    }
+    }*/
 }

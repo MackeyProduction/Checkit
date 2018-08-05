@@ -12,10 +12,10 @@
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:onClick="btnBack_onClick"
+        android:onClick="btnMenuBack_onClick"
         android:padding="5dp"
         android:scaleType="fitStart"
-        app:srcCompat="@drawable/zurueck" />
+        android:src="@drawable/zurueck" />
 
     <ImageView
         android:id="@+id/imageViewLogo"
@@ -23,16 +23,16 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/checkit_500x145" />
+        android:src="@drawable/checkit_500x145" />
 
     <ImageView
         android:id="@+id/imageViewProfile"
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:onClick="btnProfile_onClick"
+        android:onClick="btnMenuProfile_onClick"
         android:padding="5dp"
         android:scaleType="fitEnd"
-        app:srcCompat="@drawable/profil_filled" />
+        android:src="@drawable/profil_filled" />
 
 </LinearLayout>

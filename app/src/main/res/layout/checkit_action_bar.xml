@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="@dimen/menu_height"
     android:background="@android:color/background_light"
     android:orientation="horizontal">
 
@@ -18,16 +18,16 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/checkit_500x145" />
+        android:src="@drawable/checkit_500x145" />
 
     <ImageView
         android:id="@+id/imageViewProfile"
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:onClick="btnProfile_onClick"
+        android:onClick="btnMenuProfile_onClick"
         android:padding="5dp"
         android:scaleType="fitEnd"
-        app:srcCompat="@drawable/profil_filled" />
+        android:src="@drawable/profil_filled" />
 
 </LinearLayout>

@@ -4,29 +4,20 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.ConnectException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
-import de.cbc.azubiproject.models.ActionBarHelper;
 import de.cbc.azubiproject.models.ActionBarNoBackButton;
 import de.cbc.azubiproject.models.AddGroupDialog;
-import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.UserGroup;
-import okhttp3.internal.http2.ConnectionShutdownException;
 
 public class GroupViewActivity extends ActionBarNoBackButton {
 
