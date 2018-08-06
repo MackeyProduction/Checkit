@@ -35,47 +35,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/hinzufuegen" />
 
-    <ImageView
-        android:id="@+id/imageViewGroup"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvGroup"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:minHeight="@dimen/groupView_card_minHeight"
-        android:onClick="btnGroup_onClick"
-        android:src="@drawable/rounded_edittext"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
-
-    <TextView
-        android:id="@+id/textViewGroupHeadline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Geschichte"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewGroup"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewGroup"
-        app:layout_constraintStart_toStartOf="@+id/imageViewGroup"
-        app:layout_constraintTop_toTopOf="@+id/imageViewGroup" />
-
-    <TextView
-        android:id="@+id/textViewGroupSubline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Klausur am 15.10.2018"
-        android:textColor="@android:color/background_dark"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewGroup"
-        app:layout_constraintStart_toStartOf="@+id/imageViewGroup"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGroupHeadline" />
 
 </android.support.constraint.ConstraintLayout>

@@ -6,12 +6,24 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import de.cbc.azubiproject.containers.GroupContainer;
+import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.models.AddQuestionDialog;
+import de.cbc.azubiproject.models.QuestionAnswer;
+import de.cbc.azubiproject.models.UserGroup;
+import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
 
 
 /**
@@ -19,6 +31,9 @@ import de.cbc.azubiproject.models.AddQuestionDialog;
  */
 public class GroupFragment extends Fragment implements View.OnClickListener {
     private QuestionModeFragment questionModeFragment;
+    private TextView textViewQuestion;
+    private RecyclerView rvGroupQuestions;
+    private GroupAdapter groupAdapter;
     public static final String GROUP_ID = "de.cbc.checkit.MESSAGE";
 
     public GroupFragment() {
@@ -39,12 +54,43 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         FloatingActionButton editQuestion = (FloatingActionButton) layout.findViewById(R.id.fabEditQuestion);
         editQuestion.setOnClickListener(this);
 
+        rvGroupQuestions = (RecyclerView) layout.findViewById(R.id.rvGroupQuestions);
+
         return layout;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        rvGroupQuestions.setHasFixedSize(true);
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        rvGroupQuestions.setLayoutManager(mLayoutManager);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        try {
+            // load group id
+            int groupId = Integer.parseInt(getArguments().getString(GroupViewFragment.GROUP_ID));
+
+            GroupContainer groupContainer = new GroupFacade().getContainer();
+            List<QuestionAnswer> questionAnswers = (List<QuestionAnswer>) groupContainer.getQuestionAnswerCollection().getByGroupId(groupId);
+
+            groupAdapter = new GroupAdapter(questionAnswers.subList(2, 7));
+            rvGroupQuestions.setAdapter(groupAdapter);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
 
         Bundle bundle = new Bundle();
         bundle.putString(GROUP_ID, GroupViewFragment.GROUP_ID);

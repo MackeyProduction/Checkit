@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:id="@+id/imageViewNotecard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:minHeight="100dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:paddingLeft="@dimen/group_cardTextView_paddingLeft"
+        android:paddingRight="@dimen/editText_paddingRight"
+        android:text="Keine Daten vorhanden."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewNotecard"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewNotecard"
+        app:layout_constraintStart_toStartOf="@+id/imageViewNotecard"
+        app:layout_constraintTop_toTopOf="@+id/imageViewNotecard"
+        tools:text="Was ist eine Groteskschrift?" />
+</android.support.constraint.ConstraintLayout>

@@ -6,6 +6,11 @@ public class AnswerType implements IAnswerType {
     private int answerTypeId;
     private String answerType;
 
+    public AnswerType()
+    {
+        super();
+    }
+
     public AnswerType(int answerTypeId, String answerType)
     {
         this.answerTypeId = answerTypeId;

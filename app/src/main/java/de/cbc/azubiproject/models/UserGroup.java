@@ -11,6 +11,11 @@ public class UserGroup implements IUserGroup {
     private User user;
     private Group group;
 
+    public UserGroup()
+    {
+        super();
+    }
+
     public UserGroup(int userGroupId, User user, Group group)
     {
         this.userGroupId = userGroupId;

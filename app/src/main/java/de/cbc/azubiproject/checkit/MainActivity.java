@@ -2,8 +2,11 @@ package de.cbc.azubiproject.checkit;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -141,5 +144,20 @@ public class MainActivity extends FragmentActivity {
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    public boolean checkInternetConnection()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                    connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+                return true;
+            } else {
+                Toast.makeText(getApplicationContext(), "Es konnte keine Verbindung zum Internet aufgebaut werden.", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        return false;
     }
 }
