@@ -43,9 +43,11 @@ public abstract class AbstractCustomDialog extends AppCompatActivity {
             }
         });
 
+        onCreate(dialog);
         dialog.show();
     }
 
     protected abstract void dialog_onSuccess(Dialog dialog);
     protected abstract void dialog_onCancel(Dialog dialog);
+    protected abstract void onCreate(Dialog dialog);
 }

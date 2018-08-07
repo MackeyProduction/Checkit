@@ -18,7 +18,7 @@
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textViewAnswer"
+                android:id="@+id/textViewSearchUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -27,10 +27,10 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextQuestion" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextGroupName" />
 
             <EditText
-                android:id="@+id/editTextAnswer"
+                android:id="@+id/editTextSearchUser"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
@@ -47,10 +47,10 @@
                 android:text="Massenmord an Juden."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/radioGroupAnswer"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewSearchUser" />
 
             <EditText
-                android:id="@+id/editTextQuestion"
+                android:id="@+id/editTextGroupName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
@@ -68,10 +68,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewCreateQuestion" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewGroupName" />
 
             <TextView
-                android:id="@+id/textViewCreateQuestion"
+                android:id="@+id/textViewGroupName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -102,7 +102,7 @@
                 android:text="Eine Kaugummisorte."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/radioGroupAnswer"
-                app:layout_constraintTop_toBottomOf="@+id/editTextAnswer" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextSearchUser" />
 
             <EditText
                 android:id="@+id/editTextAnswer3"
@@ -187,7 +187,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/textViewFreeText"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAnswer">
+                app:layout_constraintTop_toBottomOf="@+id/textViewSearchUser">
 
                 <RadioButton
                     android:id="@+id/radioButtonAnswerCorrect1"

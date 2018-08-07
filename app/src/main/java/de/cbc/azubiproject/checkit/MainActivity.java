@@ -97,7 +97,7 @@ public class MainActivity extends FragmentActivity {
         statusCode = Integer.parseInt(httpResponse.getStatusCode());
         responseMessage = httpResponse.getStatusMessage();
 
-        if (statusCode == StatusCodes.LOGIN_SUCCESSFUL) {
+        if (statusCode == StatusCodes.LOGIN_SUCCESSFUL && checkInternetConnection()) {
             Toast.makeText(view.getContext(), "Erfolgreich eingeloggt.", Toast.LENGTH_LONG).show();
 
             // create bundle

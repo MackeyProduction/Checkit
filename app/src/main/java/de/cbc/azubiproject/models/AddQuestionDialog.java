@@ -6,10 +6,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-
 import de.cbc.azubiproject.asynctasks.AddQuestionTask;
 import de.cbc.azubiproject.checkit.R;
 import de.cbc.azubiproject.http.HttpResponse;
@@ -37,8 +33,8 @@ public class AddQuestionDialog extends AbstractCustomDialog {
 
         try {
             // edit text
-            EditText editTextQuestion = (EditText) dialog.findViewById(R.id.editTextQuestion);
-            EditText editTextAnswer1 = (EditText) dialog.findViewById(R.id.editTextAnswer);
+            EditText editTextQuestion = (EditText) dialog.findViewById(R.id.editTextGroupName);
+            EditText editTextAnswer1 = (EditText) dialog.findViewById(R.id.editTextSearchUser);
             EditText editTextAnswer2 = (EditText) dialog.findViewById(R.id.editTextAnswer2);
             EditText editTextAnswer3 = (EditText) dialog.findViewById(R.id.editTextAnswer3);
             EditText editTextAnswer4 = (EditText) dialog.findViewById(R.id.editTextAnswer4);
@@ -73,5 +69,10 @@ public class AddQuestionDialog extends AbstractCustomDialog {
     @Override
     protected void dialog_onCancel(Dialog dialog) {
         dialog.dismiss();
+    }
+
+    @Override
+    protected void onCreate(Dialog dialog) {
+
     }
 }

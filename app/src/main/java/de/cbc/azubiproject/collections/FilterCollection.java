@@ -21,6 +21,6 @@ public class FilterCollection extends AbstractFilterCollection {
             }
         }
 
-        return result;
+        return (result.size() > 0) ? result : null;
     }
 }
