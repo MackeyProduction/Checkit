@@ -98,7 +98,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         }
 
         Bundle bundle = new Bundle();
-        bundle.putString(GROUP_ID, GroupViewFragment.GROUP_ID);
+        bundle.putString(GROUP_ID, getArguments().getStringArrayList(GroupViewFragment.STRING_BUNDLE).get(0));
         questionModeFragment = (QuestionModeFragment) Fragment.instantiate(getActivity().getApplicationContext(), QuestionModeFragment.class.getName(), bundle);
     }
 
