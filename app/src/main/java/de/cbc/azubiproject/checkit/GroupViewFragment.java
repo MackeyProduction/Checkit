@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -43,6 +44,7 @@ public class GroupViewFragment extends Fragment {
     private ConstraintSet constraintSet;
     private RecyclerView rvGroup;
     public static final String GROUP_ID = "de.cbc.checkit.MESSAGE";
+    public static final String STRING_BUNDLE = "de.cbc.checkit.MESSAGE";
     private GroupContainer groupContainer;
     private List<UserGroup> userGroups;
     private GroupViewAdapter groupViewAdapter;
@@ -89,7 +91,7 @@ public class GroupViewFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        String username = getArguments().getString(MainActivity.LOGIN_STATE);
+        username = getArguments().getString(MainActivity.LOGIN_STATE);
 
         if (!TextUtils.isEmpty(username)) {
             try {
@@ -107,9 +109,6 @@ public class GroupViewFragment extends Fragment {
                         btnGroup_onClick(item.getGroup().getGroupId());
                     }
                 });
-
-                //textViewHeadline.setText(userGroups.get(0).getGroup().getGroupName());
-                //textViewSubline.setText(userGroups.get(0).getUser().getUsername());
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -127,8 +126,13 @@ public class GroupViewFragment extends Fragment {
 
     public void btnGroup_onClick(int position)
     {
+        ArrayList<String> putString = new ArrayList<>();
+        putString.add(Integer.toString(position));
+        putString.add(username);
+
         Bundle bundle = new Bundle();
-        bundle.putString(GROUP_ID, Integer.toString(position));
+        bundle.putStringArrayList(STRING_BUNDLE, putString);
+
         GroupFragment groupFragment = (GroupFragment) Fragment.instantiate(getActivity().getApplicationContext(), GroupFragment.class.getName(), bundle);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();

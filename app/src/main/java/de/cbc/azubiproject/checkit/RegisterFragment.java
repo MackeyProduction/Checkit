@@ -1,6 +1,7 @@
 package de.cbc.azubiproject.checkit;
 
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -31,6 +32,10 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private TextView registerHeader;
     private String username, password, passwordRepeat, firstName, lastName, email, birthDate;
     private EditText usernameEditText, passwordEditText, passwordRepeatEditText, firstNameEditText, lastNameEditText, emailEditText, birthDateEditText;
+    private GroupViewFragment groupViewFragment;
+    private GroupFragment groupFragment;
+    private QuestionModeFragment questionModeFragment;
+    private ProfileFragment profileFragment;
     public static final String LOGIN_STATE = "de.cbc.checkit.MESSAGE";
 
     public RegisterFragment() {
@@ -86,10 +91,18 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                         if (statusCode == StatusCodes.REGISTER_SUCCESSFUL) {
                             Toast.makeText(getActivity().getApplicationContext(), response.getStatusMessage(), Toast.LENGTH_LONG).show();
 
-                            // redirect to group view
-                            Intent intent = new Intent(getActivity().getApplicationContext(), GroupViewActivity.class);
-                            intent.putExtra(LOGIN_STATE, true);
-                            startActivity(intent);
+                            // create bundle
+                            Bundle bundle = new Bundle();
+                            bundle.putString(LOGIN_STATE, usernameEditText.getText().toString());
+                            groupViewFragment = (GroupViewFragment) Fragment.instantiate(getActivity(), GroupViewFragment.class.getName(), bundle);
+                            groupFragment = (GroupFragment) Fragment.instantiate(getActivity(), GroupFragment.class.getName(), bundle);
+                            questionModeFragment = (QuestionModeFragment) Fragment.instantiate(getActivity(), QuestionModeFragment.class.getName(), bundle);
+                            profileFragment = (ProfileFragment) Fragment.instantiate(getActivity(), ProfileFragment.class.getName(), bundle);
+
+                            // redirect to fragment
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.clMain, groupViewFragment);
+                            fragmentTransaction.commit();
                         } else {
                             Toast.makeText(getActivity().getApplicationContext(), response.getStatusMessage(), Toast.LENGTH_LONG).show();
                         }

@@ -21,8 +21,10 @@ import java.util.concurrent.ExecutionException;
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.models.AddQuestionDialog;
+import de.cbc.azubiproject.models.Group;
 import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.UserGroup;
+import de.cbc.azubiproject.repositories.GroupRepository;
 import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
 
 
@@ -34,6 +36,8 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
     private TextView textViewQuestion;
     private RecyclerView rvGroupQuestions;
     private GroupAdapter groupAdapter;
+    private int groupId;
+    private String username;
     public static final String GROUP_ID = "de.cbc.checkit.MESSAGE";
 
     public GroupFragment() {
@@ -75,12 +79,13 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
 
         try {
             // load group id
-            int groupId = Integer.parseInt(getArguments().getString(GroupViewFragment.GROUP_ID));
+            groupId = Integer.parseInt(getArguments().getStringArrayList(GroupViewFragment.STRING_BUNDLE).get(0));
+            username = getArguments().getStringArrayList(GroupViewFragment.STRING_BUNDLE).get(1);
 
             GroupContainer groupContainer = new GroupFacade().getContainer();
-            List<QuestionAnswer> questionAnswers = (List<QuestionAnswer>) groupContainer.getQuestionAnswerCollection().getByGroupId(groupId);
+            List<QuestionAnswer> questionAnswers = (List<QuestionAnswer>) groupContainer.getQuestionAnswerCollection().getByAnswerType(groupId, "Lernmodus");
 
-            groupAdapter = new GroupAdapter(questionAnswers.subList(2, 7));
+            groupAdapter = new GroupAdapter(questionAnswers);
             rvGroupQuestions.setAdapter(groupAdapter);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -99,8 +104,16 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
 
     public void btnAddQuestion_onClick(View view)
     {
-        AddQuestionDialog addQuestionDialog = new AddQuestionDialog(getActivity(), R.layout.dialog_group_question);
-        addQuestionDialog.showDialog();
+        try {
+            GroupRepository groupRepository = new GroupFacade().getRepositories().getUserGroupCollection().getGroupRepository();
+            String groupName = ((Group) groupRepository.getById(groupId)).getGroupName();
+            AddQuestionDialog addQuestionDialog = new AddQuestionDialog(getActivity(), R.layout.dialog_group_question, username, groupName);
+            addQuestionDialog.showDialog();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void btnQuizMode_onClick(View view)

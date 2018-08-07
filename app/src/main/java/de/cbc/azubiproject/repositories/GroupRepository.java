@@ -30,7 +30,7 @@ public class GroupRepository implements IRepository {
 
     @Override
     public Object getById(int id) {
-        return new FilterCollection(groupCollection, group -> group.getGroupId() == id);
+        return new FilterCollection(groupCollection, group -> group.getGroupId() == id).getCollection().toArray()[0];
     }
 
     @Override

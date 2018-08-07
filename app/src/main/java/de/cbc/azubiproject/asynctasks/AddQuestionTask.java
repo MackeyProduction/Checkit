@@ -9,7 +9,7 @@ import de.cbc.azubiproject.http.HttpResponse;
 public class AddQuestionTask extends AsyncTask<String, Void, HttpResponse> {
     @Override
     protected HttpResponse doInBackground(String... strings) {
-        String json = String.format("{\"username\":\"%s\",\"groupName\":\"%s\",\"question\":\"%s\",\"answer\":\"%s\",\"answerType\":\"%s\",\"correct\":\"%s\",\"createDate\":\"%s\"}", strings[0], strings[1], strings[2], strings[3], strings[4], strings[5], strings[6], strings[7]);
+        String json = String.format("{\"username\":\"%s\",\"groupName\":\"%s\",\"question\":\"%s\",\"answer\":\"%s\",\"answerType\":\"%s\",\"correct\":\"%s\"}", strings[0], strings[1], strings[2], strings[3], strings[4], strings[5]);
         return new HttpRequest(new Endpoint("/questionAnswer.php")).postRequest(json);
     }
 }
