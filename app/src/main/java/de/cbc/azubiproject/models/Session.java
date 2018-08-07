@@ -11,6 +11,11 @@ public class Session implements ISession {
     private boolean isSessionActive;
     private Date delayDate;
 
+    public Session()
+    {
+        super();
+    }
+
     public Session(int sId, User user, String sessionId, boolean isSessionActive, Date delayDate)
     {
         this.sId = sId;

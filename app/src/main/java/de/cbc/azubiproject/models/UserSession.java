@@ -9,6 +9,11 @@ public class UserSession implements IUserSession {
     private User user;
     private Session session;
 
+    public UserSession()
+    {
+        super();
+    }
+
     public UserSession(int userSessionId, User user, Session session)
     {
         this.userSessionId = userSessionId;

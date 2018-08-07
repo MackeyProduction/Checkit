@@ -13,12 +13,17 @@ import de.cbc.azubiproject.repositories.UserGroupRepository;
 
 public class QuestionAnswer implements IQuestionAnswer {
     private int qaId;
-    private IUserGroup userGroup;
-    private IQuestion question;
-    private IAnswer answer;
+    private UserGroup userGroup;
+    private Question question;
+    private Answer answer;
     private boolean isCorrect;
 
-    public QuestionAnswer(int qaId, IUserGroup userGroup, IQuestion question, IAnswer answer, boolean isCorrect)
+    public QuestionAnswer()
+    {
+        super();
+    }
+
+    public QuestionAnswer(int qaId, UserGroup userGroup, Question question, Answer answer, boolean isCorrect)
     {
         this.qaId = qaId;
         this.userGroup = userGroup;

@@ -14,4 +14,5 @@
     <dimen name="button_minHeight">60dp</dimen>
     <dimen name="editText_dialog_minHeight">60dp</dimen>
     <dimen name="editText_dialog_minWidth">60dp</dimen>
+    <dimen name="menu_height">60dp</dimen>
 </resources>

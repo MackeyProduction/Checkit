@@ -7,6 +7,11 @@ public class Answer implements IAnswer {
     private String answer;
     private AnswerType answerType;
 
+    public Answer()
+    {
+        super();
+    }
+
     public Answer(int answerId, String answer, AnswerType answerType)
     {
         this.answerId = answerId;

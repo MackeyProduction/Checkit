@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
+    <ImageView
+        android:id="@+id/imageViewQuestionModeCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:minHeight="320dp"
+        android:src="@drawable/rounded_edittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/textViewQuestionModeQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Was sind Serifen?"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintTop_toTopOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnQuestionModeAnswer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_button_bordered"
+        android:text="Antwort 01"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestionModeQuestion"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnQuestionModeAnswer2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_button_bordered"
+        android:text="Antwort 02"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintTop_toBottomOf="@+id/btnQuestionModeAnswer"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnQuestionModeAnswer3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_button_bordered"
+        android:text="Antwort 03"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintTop_toBottomOf="@+id/btnQuestionModeAnswer2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnQuestionModeAnswer4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_button_bordered"
+        android:text="Antwort 04"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
+        app:layout_constraintTop_toBottomOf="@+id/btnQuestionModeAnswer3"
+        app:layout_constraintVertical_bias="0.0" />
+</android.support.constraint.ConstraintLayout>

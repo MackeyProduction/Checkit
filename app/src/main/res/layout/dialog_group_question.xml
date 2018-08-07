@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minWidth="300dp"
+    android:minWidth="350dp"
     android:minHeight="300dp"
     android:background="#ffffffff">
 
@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edittext_dialog"
                 android:ems="10"
@@ -44,9 +44,9 @@
                 android:minWidth="@dimen/editText_dialog_minWidth"
                 android:paddingLeft="@dimen/editText_paddingLeft"
                 android:paddingRight="@dimen/editText_paddingRight"
+                android:text="Massenmord an Juden."
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/radioGroupAnswer"
                 app:layout_constraintTop_toBottomOf="@+id/textViewAnswer" />
 
             <EditText
@@ -63,11 +63,12 @@
                 android:minHeight="120dp"
                 android:paddingLeft="@dimen/editText_paddingLeft"
                 android:paddingRight="@dimen/editText_paddingRight"
+                android:text="Was ist der Holocaust?"
+                android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewCreateQuestion"
-                tools:layout_editor_absoluteY="95dp" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewCreateQuestion" />
 
             <TextView
                 android:id="@+id/textViewCreateQuestion"
@@ -88,7 +89,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edittext_dialog"
                 android:ems="10"
@@ -98,8 +99,9 @@
                 android:minWidth="@dimen/editText_dialog_minWidth"
                 android:paddingLeft="@dimen/editText_paddingLeft"
                 android:paddingRight="@dimen/editText_paddingRight"
+                android:text="Eine Kaugummisorte."
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/radioGroupAnswer"
                 app:layout_constraintTop_toBottomOf="@+id/editTextAnswer" />
 
             <EditText
@@ -107,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edittext_dialog"
                 android:ems="10"
@@ -117,8 +119,9 @@
                 android:minWidth="@dimen/editText_dialog_minWidth"
                 android:paddingLeft="@dimen/editText_paddingLeft"
                 android:paddingRight="@dimen/editText_paddingRight"
+                android:text="Etwas zu essen."
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/radioGroupAnswer"
                 app:layout_constraintTop_toBottomOf="@+id/editTextAnswer2" />
 
             <EditText
@@ -126,7 +129,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_edittext_dialog"
                 android:ems="10"
@@ -136,8 +139,9 @@
                 android:minWidth="@dimen/editText_dialog_minWidth"
                 android:paddingLeft="@dimen/editText_paddingLeft"
                 android:paddingRight="@dimen/editText_paddingRight"
+                android:text="Ein Cocktail."
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/radioGroupAnswer"
                 app:layout_constraintTop_toBottomOf="@+id/editTextAnswer3" />
 
             <TextView
@@ -168,10 +172,48 @@
                 android:minHeight="120dp"
                 android:paddingLeft="@dimen/editText_paddingLeft"
                 android:paddingRight="@dimen/editText_paddingRight"
+                android:text="Der Holocaust war der gezielte Massenmord an Juden."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewFreeText" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupAnswer"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewFreeText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAnswer">
+
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerCorrect1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerCorrect2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerCorrect3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerCorrect4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </RadioGroup>
 
             <include
                 layout="@layout/custom_dialog_footer"

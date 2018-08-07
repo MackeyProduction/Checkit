@@ -9,6 +9,11 @@ public class Group implements IGroup {
     private int groupId;
     private String groupName;
 
+    public Group()
+    {
+        super();
+    }
+
     public Group(int groupId, String groupName)
     {
         this.groupId = groupId;

@@ -106,7 +106,7 @@ public class HttpRequest implements IHttpRequest {
     }
 
     private HttpResponse validate(Response response) {
-        HttpResponse httpResponse = null;
+        HttpResponse httpResponse = gson.fromJson("{'responseCode':'5001','response':[{'responseMessage':'Es konnte keine Verbindung zum Server aufgebaut werden.'}]}", HttpResponse.class);
         try {
             String responseString = response.body().string();
             if (responseString != null) {
@@ -115,16 +115,18 @@ public class HttpRequest implements IHttpRequest {
 
                     if (!responseString.equals("") && !responseString.startsWith("<!DOCTYPE html>")) {
                         httpResponse = gson.fromJson(responseString, HttpResponse.class);
-                    } else {
-                        httpResponse = gson.fromJson("{'responseCode':'5001','response':[{'responseMessage':'Es konnte keine Verbindung zum Server aufgebaut werden.'}]}", HttpResponse.class);
                     }
                 } else {
-                    JsonElement element = gson.fromJson(responseString, JsonElement.class);
-                    System.out.println(element.getAsJsonObject().get("response"));
-                    httpResponse = gson.fromJson(responseString, HttpResponse.class);
+                    if (!responseString.equals("")) {
+                        JsonElement element = gson.fromJson(responseString, JsonElement.class);
+                        System.out.println(element.getAsJsonObject().get("response"));
+                        httpResponse = gson.fromJson(responseString, HttpResponse.class);
+                    }
                 }
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

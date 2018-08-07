@@ -3,12 +3,9 @@ package de.cbc.azubiproject.interfaces;
 import android.app.Activity;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-
-import java.util.function.Predicate;
 
 import de.cbc.azubiproject.checkit.R;
 

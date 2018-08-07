@@ -13,7 +13,7 @@ public class AddGroupDialog extends AbstractCustomDialog {
 
     @Override
     protected void dialog_onSuccess(Dialog dialog) {
-
+        dialog.dismiss();
     }
 
     @Override

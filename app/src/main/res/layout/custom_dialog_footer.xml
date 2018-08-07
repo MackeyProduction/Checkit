@@ -8,7 +8,7 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/btnDialogSuccess"
+        android:id="@+id/btnDialogCancel"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="32dp"
@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnDialogCancel"
+        android:id="@+id/btnDialogSuccess"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -31,6 +31,6 @@
         android:foreground="@drawable/bestaetigen"
         android:minHeight="@dimen/button_minHeight"
         android:minWidth="@dimen/button_minWidth"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnDialogSuccess"
-        app:layout_constraintStart_toEndOf="@+id/btnDialogSuccess" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnDialogCancel"
+        app:layout_constraintStart_toEndOf="@+id/btnDialogCancel" />
 </android.support.constraint.ConstraintLayout>

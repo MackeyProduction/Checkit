@@ -4,12 +4,17 @@ import de.cbc.azubiproject.interfaces.IQuestion;
 
 public class Question implements IQuestion {
     private int questionId;
-    private String questionName;
+    private String question;
 
-    public Question(int questionId, String questionName)
+    public Question()
+    {
+        super();
+    }
+
+    public Question(int questionId, String question)
     {
         this.questionId = questionId;
-        this.questionName = questionName;
+        this.question = question;
     }
 
     @Override
@@ -18,7 +23,7 @@ public class Question implements IQuestion {
     }
 
     @Override
-    public String getQuestionName() {
-        return questionName;
+    public String getQuestion() {
+        return question;
     }
 }
