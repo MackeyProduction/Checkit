@@ -87,6 +87,13 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
 
             groupAdapter = new GroupAdapter(questionAnswers);
             rvGroupQuestions.setAdapter(groupAdapter);
+
+            groupAdapter.setOnClickListener(new GroupAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(QuestionAnswer item, TextView textViewQuestion) {
+                    btnShowAnswer_onClick(item, textViewQuestion);
+                }
+            });
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -142,5 +149,10 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
                 btnEditMode_onClick(view);
                 break;
         }
+    }
+
+    public void btnShowAnswer_onClick(QuestionAnswer questionAnswer, TextView textViewQuestion)
+    {
+        textViewQuestion.setText(questionAnswer.getAnswer().getAnswer());
     }
 }

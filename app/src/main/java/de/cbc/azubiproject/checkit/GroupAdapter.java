@@ -14,7 +14,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
     private List<QuestionAnswer> questionAnswerList;
     private GroupAdapter.OnItemClickListener clickListener;
     public interface OnItemClickListener {
-        void onItemClick(QuestionAnswer item);
+        void onItemClick(QuestionAnswer item, TextView textViewQuestion);
     }
 
     public void setOnClickListener(GroupAdapter.OnItemClickListener listener) {
@@ -47,7 +47,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 if (clickListener != null) {
-                    clickListener.onItemClick(questionAnswerList.get(position));
+                    clickListener.onItemClick(questionAnswerList.get(position), holder.textViewQuestion);
                 }
             }
         });

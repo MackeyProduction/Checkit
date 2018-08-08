@@ -143,7 +143,7 @@ public class GroupViewFragment extends Fragment {
 
     public void btnAddGroup_onClick()
     {
-        AddGroupDialog dialog = new AddGroupDialog(getActivity(), R.layout.dialog_group);
+        AddGroupDialog dialog = new AddGroupDialog(getActivity(), R.layout.dialog_group, username);
         dialog.showDialog();
     }
 }

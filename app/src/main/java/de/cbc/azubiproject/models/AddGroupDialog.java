@@ -34,9 +34,16 @@ public class AddGroupDialog extends AbstractCustomDialog {
     private TextView editTextSearchUser;
     private Button btnSearchUser;
     private EditText editTextGroupName;
+    private String username;
 
     public AddGroupDialog(Activity activity, int resourceId) {
         super(activity, resourceId);
+    }
+
+    public AddGroupDialog(Activity activity, int resourceId, String username)
+    {
+        super(activity, resourceId);
+        this.username = username;
     }
 
     @Override
@@ -50,8 +57,9 @@ public class AddGroupDialog extends AbstractCustomDialog {
             HttpResponse httpResponse = null;
 
             if (!userList.isEmpty() && !TextUtils.isEmpty(editTextGroupName.getText().toString())) {
+                httpResponse = new AddUserGroupTask().execute(this.username, editTextGroupName.getText().toString(), "1").get();
                 for (User user : userList) {
-                    httpResponse = new AddUserGroupTask().execute(user.getUsername(), editTextGroupName.getText().toString()).get();
+                    httpResponse = new AddUserGroupTask().execute(user.getUsername(), editTextGroupName.getText().toString(), "0").get();
                 }
 
                 Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
