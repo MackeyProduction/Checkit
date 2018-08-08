@@ -39,7 +39,7 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     public Collection<QuestionAnswer> getByAnswerType(int groupId, String answerType) throws InterruptedException, ExecutionException
     {
-        return new FilterCollection(getByGroupId(groupId), questionAnswer -> questionAnswer.getAnswer().getAnswerType().getAnswerType().equals(answerType)).getCollection();
+        return new RetrieveQuestionAnswerTask().execute(new QuestionAnswerResponse(new HttpRequest(new Endpoint(String.format("/questionAnswer.php?answerType=%s&groupId=%s", answerType, groupId))), questionAnswerCollection)).get();
     }
 
     public String getTotalQuestions(String username) throws ExecutionException, InterruptedException

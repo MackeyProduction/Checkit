@@ -1,13 +1,13 @@
 package de.cbc.azubiproject.interfaces;
 
-import de.cbc.azubiproject.repositories.AnswerRepository;
-import de.cbc.azubiproject.repositories.QuestionRepository;
-import de.cbc.azubiproject.repositories.UserGroupRepository;
+import de.cbc.azubiproject.models.Answer;
+import de.cbc.azubiproject.models.Question;
+import de.cbc.azubiproject.models.UserGroup;
 
 public interface IQuestionAnswer {
     public int questionAnswerId();
-    public IUserGroup getUserGroup();
-    public IQuestion getQuestion();
-    public IAnswer getAnswer();
-    public boolean isCorrect();
+    public UserGroup getUserGroup();
+    public Question getQuestion();
+    public Answer getAnswer();
+    public int isCorrect();
 }

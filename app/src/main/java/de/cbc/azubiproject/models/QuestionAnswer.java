@@ -16,14 +16,14 @@ public class QuestionAnswer implements IQuestionAnswer {
     private UserGroup userGroup;
     private Question question;
     private Answer answer;
-    private boolean isCorrect;
+    private int isCorrect;
 
     public QuestionAnswer()
     {
         super();
     }
 
-    public QuestionAnswer(int qaId, UserGroup userGroup, Question question, Answer answer, boolean isCorrect)
+    public QuestionAnswer(int qaId, UserGroup userGroup, Question question, Answer answer, int isCorrect)
     {
         this.qaId = qaId;
         this.userGroup = userGroup;
@@ -38,22 +38,22 @@ public class QuestionAnswer implements IQuestionAnswer {
     }
 
     @Override
-    public IUserGroup getUserGroup() {
+    public UserGroup getUserGroup() {
         return userGroup;
     }
 
     @Override
-    public IQuestion getQuestion() {
+    public Question getQuestion() {
         return question;
     }
 
     @Override
-    public IAnswer getAnswer() {
+    public Answer getAnswer() {
         return answer;
     }
 
     @Override
-    public boolean isCorrect() {
+    public int isCorrect() {
         return isCorrect;
     }
 }
