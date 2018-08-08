@@ -3,6 +3,7 @@ package de.cbc.azubiproject.repositories;
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 
+import de.cbc.azubiproject.asynctasks.RetrieveCountTask;
 import de.cbc.azubiproject.asynctasks.RetrieveQuestionAnswerTask;
 import de.cbc.azubiproject.collections.FilterCollection;
 import de.cbc.azubiproject.http.Endpoint;
@@ -38,7 +39,12 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
 
     public Collection<QuestionAnswer> getByAnswerType(int groupId, String answerType) throws InterruptedException, ExecutionException
     {
-        return new FilterCollection(getByGroupId(groupId), questionAnswer -> questionAnswer.getAnswer().getAnswerType().getAnswerType().equals(answerType)).getCollection();
+        return new RetrieveQuestionAnswerTask().execute(new QuestionAnswerResponse(new HttpRequest(new Endpoint(String.format("/questionAnswer.php?answerType=%s&groupId=%s", answerType, groupId))), questionAnswerCollection)).get();
+    }
+
+    public String getTotalQuestions(String username) throws ExecutionException, InterruptedException
+    {
+        return new RetrieveCountTask().execute(new HttpRequest(new Endpoint(String.format("/questionAnswer.php?totalQuestions=%s", username)))).get();
     }
 
     @Override

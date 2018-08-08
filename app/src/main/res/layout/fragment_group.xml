@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_muster"
+    android:background="@color/backgroundColor"
     tools:context=".GroupActivity">
 
     <include
@@ -24,12 +24,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
+        android:src="@drawable/hinzufuegen"
         app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/hinzufuegen" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabEditQuestion"
@@ -39,12 +39,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="82dp"
         android:clickable="true"
+        android:src="@drawable/bearbeiten_gross"
         app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAddQuestion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/bearbeiten" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabQuestionMode"
@@ -54,12 +54,12 @@
         android:layout_marginEnd="82dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
+        android:src="@drawable/quizmodus_gross"
         app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/fabAddQuestion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/quizmodus" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvGroupQuestions"

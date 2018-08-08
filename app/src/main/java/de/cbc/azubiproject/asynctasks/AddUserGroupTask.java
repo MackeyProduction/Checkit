@@ -9,7 +9,7 @@ import de.cbc.azubiproject.http.HttpResponse;
 public class AddUserGroupTask extends AsyncTask<String, Void, HttpResponse> {
     @Override
     protected HttpResponse doInBackground(String... strings) {
-        String json = String.format("{\"username\":\"%s\",\"groupName\":\"%s\"}", strings[0], strings[1]);
+        String json = String.format("{\"username\":\"%s\",\"groupName\":\"%s\",\"created\":\"%s\"}", strings[0], strings[1], strings[2]);
         return new HttpRequest(new Endpoint("/userGroups.php")).postRequest(json);
     }
 }

@@ -9,4 +9,5 @@ import de.cbc.azubiproject.models.QuestionAnswer;
 public interface IQuestionAnswerRepository extends IResponseRepository {
     public Collection<QuestionAnswer> getByGroupId(int groupId) throws InterruptedException, ExecutionException;
     public Collection<QuestionAnswer> getByAnswerType(int groupId, String answerType) throws InterruptedException, ExecutionException;
+    public String getTotalQuestions(String username) throws InterruptedException, ExecutionException;
 }
