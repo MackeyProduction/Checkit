@@ -5,7 +5,7 @@
     android:id="@+id/constraintGroupView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_muster"
+    android:background="@color/backgroundColor"
     android:theme="@style/checkit_app_theme">
 
     <include

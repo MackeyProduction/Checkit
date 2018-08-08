@@ -5,7 +5,7 @@
     android:id="@+id/clLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_muster"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <EditText
@@ -17,6 +17,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:fontFamily="@font/ubuntu"
         android:hint="Benutzername"
         android:inputType="textPersonName"
         android:minHeight="40dp"
@@ -35,6 +36,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:fontFamily="@font/ubuntu"
         android:hint="Passwort"
         android:inputType="textPassword"
         android:minHeight="40dp"
@@ -68,6 +70,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/ubuntu"
         android:text="Passwort vergessen?"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
@@ -96,6 +99,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/ubuntu"
         android:onClick="btnRegisterView_onClick"
         android:text="Registrieren"
         app:layout_constraintBottom_toBottomOf="parent"
