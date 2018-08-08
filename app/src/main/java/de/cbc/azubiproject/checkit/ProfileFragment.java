@@ -26,7 +26,7 @@ import de.cbc.azubiproject.repositories.GroupRepository;
  */
 public class ProfileFragment extends Fragment {
     private String username;
-    private TextView textViewFirstName, textViewRegisterDate;
+    private TextView textViewFirstName, textViewRegisterDate, textViewActiveGroups, textViewAskedQuestionsString;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -45,6 +45,8 @@ public class ProfileFragment extends Fragment {
 
         textViewFirstName = (TextView) layout.findViewById(R.id.textViewUsername);
         textViewRegisterDate = (TextView) layout.findViewById(R.id.textViewRegisteredSinceString);
+        textViewActiveGroups = (TextView) layout.findViewById(R.id.textViewActiveGroups);
+        textViewAskedQuestionsString = (TextView) layout.findViewById(R.id.textViewAskedQuestionsString);
 
         return layout;
     }
@@ -57,11 +59,16 @@ public class ProfileFragment extends Fragment {
 
         if (!TextUtils.isEmpty(username)) {
             try {
-                RepositoryContainer groupContainer = new GroupFacade().getRepositories();
-                User user = groupContainer.getUserSessionCollection().getUserRepository().getByUsername(username);
+                RepositoryContainer groupRepositories = new GroupFacade().getRepositories();
+                GroupContainer groupContainer = new GroupFacade().getContainer();
+                User user = groupRepositories.getUserSessionCollection().getUserRepository().getByUsername(username);
+                String totalUsers = groupContainer.getUserGroupCollection().getGroupsActiveCount(username);
+                String totalQuestions = groupContainer.getQuestionAnswerCollection().getTotalQuestions(username);
 
                 textViewFirstName.setText(user.getProfile().getFirstName());
                 textViewRegisterDate.setText(user.getRegisterDate());
+                textViewActiveGroups.setText(String.format("Du bist in %s Gruppen aktiv.", totalUsers));
+                textViewAskedQuestionsString.setText("\n" + totalQuestions);
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
