@@ -17,8 +17,7 @@ public abstract class AbstractHttpResponse {
         this.collection = collection;
     }
 
-    public Collection getCollection()
-    {
+    public Collection getCollection() {
         return parse(request.getRequest(), collection);
     }
 

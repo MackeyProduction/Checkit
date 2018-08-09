@@ -13,8 +13,9 @@ import de.cbc.azubiproject.models.UserGroup;
 public class GroupViewAdapter extends RecyclerView.Adapter<GroupViewAdapter.ViewHolder> {
     private List<UserGroup> mDataset;
     private OnItemClickListener clickListener;
+
     public interface OnItemClickListener {
-        void onItemClick(UserGroup item);
+        void onItemClick(UserGroup item) throws Exception;
     }
 
     public void setOnClickListener(OnItemClickListener listener) {
@@ -23,6 +24,7 @@ public class GroupViewAdapter extends RecyclerView.Adapter<GroupViewAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewGroupHeadline, textViewGroupSubline;
+
         public ViewHolder(View itemView) {
             super(itemView);
             textViewGroupHeadline = (TextView) itemView.findViewById(R.id.textViewGroupHeadline);
@@ -48,8 +50,12 @@ public class GroupViewAdapter extends RecyclerView.Adapter<GroupViewAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(clickListener != null) {
-                    clickListener.onItemClick(mDataset.get(position));
+                if (clickListener != null) {
+                    try {
+                        clickListener.onItemClick(mDataset.get(position));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

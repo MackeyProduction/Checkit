@@ -88,32 +88,34 @@ public class MainActivity extends FragmentActivity {
         fragmentTransaction.commit();
     }
 
-    public void btnLogin_onClick(View view) throws ExecutionException, InterruptedException {
-        btnLogin = findViewById(R.id.btnLogin);
-        editTextUsername = findViewById(R.id.editTextBirthdate);
-        editTextPassword = findViewById(R.id.editTextPassword);
+    public void btnLogin_onClick(View view) throws ExecutionException, InterruptedException, IllegalStateException {
+        if (checkInternetConnection()) {
+            btnLogin = findViewById(R.id.btnLogin);
+            editTextUsername = findViewById(R.id.editTextBirthdate);
+            editTextPassword = findViewById(R.id.editTextPassword);
 
-        httpResponse = new UserLoginTask().execute(editTextUsername.getText().toString(), editTextPassword.getText().toString()).get();
-        statusCode = Integer.parseInt(httpResponse.getStatusCode());
-        responseMessage = httpResponse.getStatusMessage();
+            httpResponse = new UserLoginTask().execute(editTextUsername.getText().toString(), editTextPassword.getText().toString()).get();
+            statusCode = Integer.parseInt(httpResponse.getStatusCode());
+            responseMessage = httpResponse.getStatusMessage();
 
-        if (statusCode == StatusCodes.LOGIN_SUCCESSFUL && checkInternetConnection()) {
-            Toast.makeText(view.getContext(), "Erfolgreich eingeloggt.", Toast.LENGTH_LONG).show();
+            if (statusCode == StatusCodes.LOGIN_SUCCESSFUL) {
+                Toast.makeText(view.getContext(), "Erfolgreich eingeloggt.", Toast.LENGTH_LONG).show();
 
-            // create bundle
-            Bundle bundle = new Bundle();
-            bundle.putString(LOGIN_STATE, editTextUsername.getText().toString());
-            groupViewFragment = (GroupViewFragment) Fragment.instantiate(this, GroupViewFragment.class.getName(), bundle);
-            groupFragment = (GroupFragment) Fragment.instantiate(this, GroupFragment.class.getName(), bundle);
-            questionModeFragment = (QuestionModeFragment) Fragment.instantiate(this, QuestionModeFragment.class.getName(), bundle);
-            profileFragment = (ProfileFragment) Fragment.instantiate(this, ProfileFragment.class.getName(), bundle);
+                // create bundle
+                Bundle bundle = new Bundle();
+                bundle.putString(LOGIN_STATE, editTextUsername.getText().toString());
+                groupViewFragment = (GroupViewFragment) Fragment.instantiate(this, GroupViewFragment.class.getName(), bundle);
+                groupFragment = (GroupFragment) Fragment.instantiate(this, GroupFragment.class.getName(), bundle);
+                questionModeFragment = (QuestionModeFragment) Fragment.instantiate(this, QuestionModeFragment.class.getName(), bundle);
+                profileFragment = (ProfileFragment) Fragment.instantiate(this, ProfileFragment.class.getName(), bundle);
 
-            // redirect to activity
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.clMain, groupViewFragment);
-            fragmentTransaction.commit();
-        } else {
-            Toast.makeText(view.getContext(), responseMessage, Toast.LENGTH_LONG).show();
+                // redirect to activity
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.clMain, groupViewFragment);
+                fragmentTransaction.commit();
+            } else {
+                Toast.makeText(view.getContext(), responseMessage, Toast.LENGTH_LONG).show();
+            }
         }
     }
 

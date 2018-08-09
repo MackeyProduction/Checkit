@@ -70,7 +70,11 @@ public class GroupViewFragment extends Fragment {
         btnFabAddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                btnAddGroup_onClick();
+                try {
+                    btnAddGroup_onClick();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -99,22 +103,26 @@ public class GroupViewFragment extends Fragment {
 
                 userGroups = (List<UserGroup>)groupContainer.getUserGroupCollection().getByUsername(username);
 
-                // specify an adapter (see also next example)
-                groupViewAdapter = new GroupViewAdapter(userGroups);
-                rvGroup.setAdapter(groupViewAdapter);
+                if (userGroups != null) {
+                    // specify an adapter (see also next example)
+                    groupViewAdapter = new GroupViewAdapter(userGroups);
+                    rvGroup.setAdapter(groupViewAdapter);
 
-                groupViewAdapter.setOnClickListener(new GroupViewAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(UserGroup item) {
-                        btnGroup_onClick(item.getGroup().getGroupId());
-                    }
-                });
+                    groupViewAdapter.setOnClickListener(new GroupViewAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(UserGroup item) throws Exception {
+                            btnGroup_onClick(item.getGroup().getGroupId());
+                        }
+                    });
+                }
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (NullPointerException e) {
                 Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -124,7 +132,7 @@ public class GroupViewFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    public void btnGroup_onClick(int position)
+    public void btnGroup_onClick(int position) throws Exception
     {
         ArrayList<String> putString = new ArrayList<>();
         putString.add(Integer.toString(position));
@@ -141,7 +149,7 @@ public class GroupViewFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-    public void btnAddGroup_onClick()
+    public void btnAddGroup_onClick() throws Exception
     {
         AddGroupDialog dialog = new AddGroupDialog(getActivity(), R.layout.dialog_group, username);
         dialog.showDialog();

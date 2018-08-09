@@ -2,7 +2,9 @@ package de.cbc.azubiproject.repositories;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.cbc.azubiproject.asynctasks.HttpPostTask;
@@ -45,6 +47,16 @@ public class UserGroupRepository implements IUserGroupRepository {
     @Override
     public Collection<UserGroup> getByGroupId(int id) throws ExecutionException, InterruptedException {
         return (Collection<UserGroup>) new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint(String.format("/userGroups.php?groupId=%s", id))), userGroupCollection)).get();
+    }
+
+    public UserGroup getByGroupName(String groupName) throws ExecutionException, InterruptedException {
+        Collection<UserGroup> collectionUg = new FilterCollection(userGroupCollection, userGroup -> userGroup.getGroup().getGroupName().equals(groupName)).getCollection();
+
+        UserGroup ug = null;
+        if (collectionUg != null) {
+            ug = (UserGroup) collectionUg.toArray()[0];
+        }
+        return ug;
     }
 
     public Collection<UserGroup> getByUsername(String username)

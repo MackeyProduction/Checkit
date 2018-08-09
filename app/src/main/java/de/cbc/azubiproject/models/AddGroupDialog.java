@@ -22,6 +22,7 @@ import java.util.concurrent.ExecutionException;
 import de.cbc.azubiproject.asynctasks.AddUserGroupTask;
 import de.cbc.azubiproject.checkit.R;
 import de.cbc.azubiproject.checkit.UserTagAdapter;
+import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.containers.RepositoryContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.http.HttpResponse;
@@ -57,13 +58,20 @@ public class AddGroupDialog extends AbstractCustomDialog {
             HttpResponse httpResponse = null;
 
             if (!userList.isEmpty() && !TextUtils.isEmpty(editTextGroupName.getText().toString())) {
-                httpResponse = new AddUserGroupTask().execute(this.username, editTextGroupName.getText().toString(), "1").get();
-                for (User user : userList) {
-                    httpResponse = new AddUserGroupTask().execute(user.getUsername(), editTextGroupName.getText().toString(), "0").get();
-                }
+                GroupContainer groupContainer = new GroupFacade().getContainer();
+                UserGroup userGroup = groupContainer.getUserGroupCollection().getByGroupName(editTextGroupName.getText().toString());
 
-                Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
-                dialog.dismiss();
+                if (userGroup == null) {
+                    httpResponse = new AddUserGroupTask().execute(this.username, editTextGroupName.getText().toString(), "1").get();
+                    for (User user : userList) {
+                        httpResponse = new AddUserGroupTask().execute(user.getUsername(), editTextGroupName.getText().toString(), "0").get();
+                    }
+
+                    Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(activity.getApplicationContext(), "Es existiert bereits eine Gruppe mit diesem Namen.", Toast.LENGTH_LONG).show();
+                }
             } else {
                 Toast.makeText(activity.getApplicationContext(), "Es sind nicht alle Textfelder ausgefüllt.", Toast.LENGTH_LONG).show();
             }

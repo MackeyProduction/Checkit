@@ -61,6 +61,8 @@ public class HttpRequest implements IHttpRequest {
             validate = validate(response);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return validate;
@@ -78,6 +80,8 @@ public class HttpRequest implements IHttpRequest {
 
             validate = validate(response);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -99,6 +103,8 @@ public class HttpRequest implements IHttpRequest {
 
             validate = validate(response);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

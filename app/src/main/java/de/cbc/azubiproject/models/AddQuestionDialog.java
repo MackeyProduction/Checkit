@@ -2,9 +2,12 @@ package de.cbc.azubiproject.models;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import de.cbc.azubiproject.asynctasks.AddQuestionTask;
 import de.cbc.azubiproject.checkit.R;
@@ -46,19 +49,23 @@ public class AddQuestionDialog extends AbstractCustomDialog {
             int radioButtonAnswerCorrect3 = (((RadioButton) dialog.findViewById(R.id.radioButtonAnswerCorrect3)).isChecked()) ? 1 : 0;
             int radioButtonAnswerCorrect4 = (((RadioButton) dialog.findViewById(R.id.radioButtonAnswerCorrect4)).isChecked()) ? 1 : 0;
 
-            dataEditText = new String[]{editTextAnswer1.getText().toString(), editTextAnswer2.getText().toString(), editTextAnswer3.getText().toString(), editTextAnswer4.getText().toString()};
-            dataRadioButton = new int[]{radioButtonAnswerCorrect1, radioButtonAnswerCorrect2, radioButtonAnswerCorrect3, radioButtonAnswerCorrect4};
+            if (!editTextQuestion.getText().toString().equals("") && !(editTextAnswer1.getText().toString().equals("")) && !editTextAnswer2.getText().toString().equals("") && !editTextAnswer3.getText().toString().equals("") && editTextAnswer4.getText().toString().equals("") && !editTextAnswerFreeText.getText().toString().equals("")) {
+                dataEditText = new String[]{editTextAnswer1.getText().toString(), editTextAnswer2.getText().toString(), editTextAnswer3.getText().toString(), editTextAnswer4.getText().toString()};
+                dataRadioButton = new int[]{radioButtonAnswerCorrect1, radioButtonAnswerCorrect2, radioButtonAnswerCorrect3, radioButtonAnswerCorrect4};
 
-            // add multiple choice to database
-            for (int i = 0; i < dataEditText.length; i++) {
-                new AddQuestionTask().execute(username, groupName, editTextQuestion.getText().toString(), dataEditText[i], "1", Integer.toString(dataRadioButton[i])).get();
+                // add multiple choice to database
+                for (int i = 0; i < dataEditText.length; i++) {
+                    new AddQuestionTask().execute(username, groupName, editTextQuestion.getText().toString(), dataEditText[i], "1", Integer.toString(dataRadioButton[i])).get();
+                }
+
+                // add free text answer
+                httpResponse = new AddQuestionTask().execute(username, groupName, editTextQuestion.getText().toString(), editTextAnswerFreeText.getText().toString(), "2", "1").get();
+
+                // successful
+                Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(activity.getApplicationContext(), "Bitte alle Textfelder ausfüllen.", Toast.LENGTH_LONG).show();
             }
-
-            // add free text answer
-            httpResponse = new AddQuestionTask().execute(username, groupName, editTextQuestion.getText().toString(), editTextAnswerFreeText.getText().toString(), "2", "1").get();
-
-            // successful
-            Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             e.printStackTrace();
         }

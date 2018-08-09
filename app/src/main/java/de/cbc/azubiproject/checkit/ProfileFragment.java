@@ -73,6 +73,8 @@ public class ProfileFragment extends Fragment {
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

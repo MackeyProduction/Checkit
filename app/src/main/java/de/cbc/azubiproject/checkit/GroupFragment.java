@@ -90,7 +90,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
 
             groupAdapter.setOnClickListener(new GroupAdapter.OnItemClickListener() {
                 @Override
-                public void onItemClick(QuestionAnswer item, TextView textViewQuestion) {
+                public void onItemClick(QuestionAnswer item, TextView textViewQuestion) throws Exception {
                     btnShowAnswer_onClick(item, textViewQuestion);
                 }
             });
@@ -102,6 +102,8 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity().getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         Bundle bundle = new Bundle();
@@ -109,8 +111,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         questionModeFragment = (QuestionModeFragment) Fragment.instantiate(getActivity().getApplicationContext(), QuestionModeFragment.class.getName(), bundle);
     }
 
-    public void btnAddQuestion_onClick(View view)
-    {
+    public void btnAddQuestion_onClick(View view) throws Exception {
         try {
             GroupRepository groupRepository = new GroupFacade().getRepositories().getUserGroupCollection().getGroupRepository();
             String groupName = ((Group) groupRepository.getById(groupId)).getGroupName();
@@ -123,36 +124,37 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void btnQuizMode_onClick(View view)
-    {
+    public void btnQuizMode_onClick(View view) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.clMain, questionModeFragment);
         fragmentTransaction.commit();
     }
 
-    public void btnEditMode_onClick(View view)
-    {
+    public void btnEditMode_onClick(View view) {
         Toast.makeText(getActivity().getApplicationContext(), "Diese Funktion steht noch nicht zur Verfügung.", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.fabAddQuestion:
-                btnAddQuestion_onClick(view);
-                break;
-            case R.id.fabQuestionMode:
-                btnQuizMode_onClick(view);
-                break;
-            case R.id.fabEditQuestion:
-                btnEditMode_onClick(view);
-                break;
+        try {
+            switch (view.getId()) {
+                case R.id.fabAddQuestion:
+                    btnAddQuestion_onClick(view);
+                    break;
+                case R.id.fabQuestionMode:
+                    btnQuizMode_onClick(view);
+                    break;
+                case R.id.fabEditQuestion:
+                    btnEditMode_onClick(view);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    public void btnShowAnswer_onClick(QuestionAnswer questionAnswer, TextView textViewQuestion)
-    {
+    public void btnShowAnswer_onClick(QuestionAnswer questionAnswer, TextView textViewQuestion) throws Exception {
         textViewQuestion.setText(questionAnswer.getAnswer().getAnswer());
     }
 }

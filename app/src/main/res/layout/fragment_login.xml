@@ -22,7 +22,6 @@
         android:inputType="textPersonName"
         android:minHeight="40dp"
         android:paddingLeft="10dp"
-        android:text="anheier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +41,6 @@
         android:inputType="textPassword"
         android:minHeight="40dp"
         android:paddingLeft="10dp"
-        android:text="foobar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextBirthdate" />
