@@ -97,6 +97,10 @@ public class GroupViewFragment extends Fragment {
 
         username = getArguments().getString(MainActivity.LOGIN_STATE);
 
+        if (username.equals("")) {
+            username = getArguments().getString(RegisterFragment.LOGIN_STATE);
+        }
+
         if (!TextUtils.isEmpty(username)) {
             try {
                 groupContainer = new GroupFacade().getContainer();

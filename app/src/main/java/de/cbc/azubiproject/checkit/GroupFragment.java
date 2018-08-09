@@ -39,6 +39,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
     private int groupId;
     private String username;
     public static final String GROUP_ID = "de.cbc.checkit.MESSAGE";
+    private int counter = 0;
 
     public GroupFragment() {
         // Required empty public constructor
@@ -55,8 +56,6 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         questionMode.setOnClickListener(this);
         FloatingActionButton addQuestion = (FloatingActionButton) layout.findViewById(R.id.fabAddQuestion);
         addQuestion.setOnClickListener(this);
-        FloatingActionButton editQuestion = (FloatingActionButton) layout.findViewById(R.id.fabEditQuestion);
-        editQuestion.setOnClickListener(this);
 
         rvGroupQuestions = (RecyclerView) layout.findViewById(R.id.rvGroupQuestions);
 
@@ -78,6 +77,8 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
 
         try {
+            counter = 0;
+
             // load group id
             groupId = Integer.parseInt(getArguments().getStringArrayList(GroupViewFragment.STRING_BUNDLE).get(0));
             username = getArguments().getStringArrayList(GroupViewFragment.STRING_BUNDLE).get(1);
@@ -131,10 +132,6 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         fragmentTransaction.commit();
     }
 
-    public void btnEditMode_onClick(View view) {
-        Toast.makeText(getActivity().getApplicationContext(), "Diese Funktion steht noch nicht zur Verfügung.", Toast.LENGTH_LONG).show();
-    }
-
     @Override
     public void onClick(View view) {
         try {
@@ -145,9 +142,6 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
                 case R.id.fabQuestionMode:
                     btnQuizMode_onClick(view);
                     break;
-                case R.id.fabEditQuestion:
-                    btnEditMode_onClick(view);
-                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,6 +149,15 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
     }
 
     public void btnShowAnswer_onClick(QuestionAnswer questionAnswer, TextView textViewQuestion) throws Exception {
-        textViewQuestion.setText(questionAnswer.getAnswer().getAnswer());
+        int cardId = counter % 2;
+        switch (cardId) {
+            case 0:
+                textViewQuestion.setText(questionAnswer.getAnswer().getAnswer());
+                break;
+            case 1:
+                textViewQuestion.setText(questionAnswer.getQuestion().getQuestion());
+                break;
+        }
+        counter++;
     }
 }

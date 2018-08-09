@@ -13,6 +13,7 @@ import de.cbc.azubiproject.models.QuestionAnswer;
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> {
     private List<QuestionAnswer> questionAnswerList;
     private GroupAdapter.OnItemClickListener clickListener;
+    private int counter = 0;
     public interface OnItemClickListener {
         void onItemClick(QuestionAnswer item, TextView textViewQuestion) throws Exception;
     }
@@ -42,6 +43,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(GroupAdapter.ViewHolder holder, int position) {
+        counter = position % 2;
         holder.textViewQuestion.setText(questionAnswerList.get(position).getQuestion().getQuestion());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

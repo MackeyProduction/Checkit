@@ -78,4 +78,9 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
+
+    public void test(View view)
+    {
+
+    }
 }

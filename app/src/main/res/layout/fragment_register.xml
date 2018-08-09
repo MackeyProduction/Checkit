@@ -18,6 +18,7 @@
         android:foreground="@drawable/bestaetigen"
         android:minHeight="60dp"
         android:minWidth="60dp"
+        android:onClick="btnRegister_onClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +51,7 @@
         android:fontFamily="@font/ubuntu"
         android:hint="Vorname"
         android:inputType="textPersonName"
+        android:maxLength="40"
         android:minHeight="@dimen/editText_minHeight"
         android:minWidth="@dimen/editText_minWidth"
         android:paddingLeft="@dimen/editText_paddingLeft"
@@ -70,6 +72,7 @@
         android:fontFamily="@font/ubuntu"
         android:hint="Nachname"
         android:inputType="textPersonName"
+        android:maxLength="40"
         android:minHeight="@dimen/editText_minHeight"
         android:minWidth="@dimen/editText_minWidth"
         android:paddingLeft="@dimen/editText_paddingLeft"
@@ -90,6 +93,7 @@
         android:fontFamily="@font/ubuntu"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:maxLength="60"
         android:minHeight="@dimen/editText_minHeight"
         android:minWidth="@dimen/editText_minWidth"
         android:paddingLeft="@dimen/editText_paddingLeft"
@@ -99,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextLastname" />
 
     <EditText
-        android:id="@+id/editTextBirthdate"
+        android:id="@+id/editTextUsernameLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/editText_end"
@@ -130,13 +134,14 @@
         android:fontFamily="@font/ubuntu"
         android:hint="Benutzername"
         android:inputType="textPersonName"
+        android:maxLength="60"
         android:minHeight="@dimen/editText_minHeight"
         android:minWidth="@dimen/editText_minWidth"
         android:paddingLeft="@dimen/editText_paddingLeft"
         android:paddingRight="@dimen/editText_paddingRight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBirthdate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsernameLogin" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -150,6 +155,7 @@
         android:fontFamily="@font/ubuntu"
         android:hint="Passwort"
         android:inputType="textPassword"
+        android:maxLength="30"
         android:minHeight="@dimen/editText_minHeight"
         android:minWidth="@dimen/editText_minWidth"
         android:paddingLeft="@dimen/editText_paddingLeft"
@@ -170,6 +176,7 @@
         android:fontFamily="@font/ubuntu"
         android:hint="Passwort wiederholen"
         android:inputType="textPassword"
+        android:maxLength="30"
         android:minHeight="@dimen/editText_minHeight"
         android:minWidth="@dimen/editText_minWidth"
         android:paddingLeft="@dimen/editText_paddingLeft"

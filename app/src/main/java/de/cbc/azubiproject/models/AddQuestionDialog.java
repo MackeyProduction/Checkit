@@ -49,7 +49,7 @@ public class AddQuestionDialog extends AbstractCustomDialog {
             int radioButtonAnswerCorrect3 = (((RadioButton) dialog.findViewById(R.id.radioButtonAnswerCorrect3)).isChecked()) ? 1 : 0;
             int radioButtonAnswerCorrect4 = (((RadioButton) dialog.findViewById(R.id.radioButtonAnswerCorrect4)).isChecked()) ? 1 : 0;
 
-            if (!editTextQuestion.getText().toString().equals("") && !(editTextAnswer1.getText().toString().equals("")) && !editTextAnswer2.getText().toString().equals("") && !editTextAnswer3.getText().toString().equals("") && editTextAnswer4.getText().toString().equals("") && !editTextAnswerFreeText.getText().toString().equals("")) {
+            if (!editTextQuestion.getText().toString().equals("") && !(editTextAnswer1.getText().toString().equals("")) && !editTextAnswer2.getText().toString().equals("") && !editTextAnswer3.getText().toString().equals("") && !editTextAnswer4.getText().toString().equals("") && !editTextAnswerFreeText.getText().toString().equals("")) {
                 dataEditText = new String[]{editTextAnswer1.getText().toString(), editTextAnswer2.getText().toString(), editTextAnswer3.getText().toString(), editTextAnswer4.getText().toString()};
                 dataRadioButton = new int[]{radioButtonAnswerCorrect1, radioButtonAnswerCorrect2, radioButtonAnswerCorrect3, radioButtonAnswerCorrect4};
 
@@ -63,14 +63,14 @@ public class AddQuestionDialog extends AbstractCustomDialog {
 
                 // successful
                 Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
+
+                dialog.dismiss();
             } else {
                 Toast.makeText(activity.getApplicationContext(), "Bitte alle Textfelder ausfüllen.", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        dialog.dismiss();
     }
 
     @Override

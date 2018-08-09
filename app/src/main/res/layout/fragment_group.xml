@@ -24,41 +24,30 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
-        android:src="@drawable/hinzufuegen"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hinzufuegen_gross"
         app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/rvGroupQuestions"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabEditQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="82dp"
-        android:clickable="true"
-        android:src="@drawable/bearbeiten_gross"
-        app:backgroundTint="@color/buttonCollor"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/fabAddQuestion"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabQuestionMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/quizmodus_gross"
         app:backgroundTint="@color/buttonCollor"
         app:fabSize="normal"
-        app:layout_constraintBottom_toTopOf="@+id/fabAddQuestion"
+        app:layout_constraintBottom_toBottomOf="@+id/rvGroupQuestions"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.RecyclerView
@@ -69,4 +58,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
+
 </android.support.constraint.ConstraintLayout>

@@ -50,12 +50,6 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_login, null);
-
-        forgetPassword = (TextView) layout.findViewById(R.id.textViewForgetPassword);
-        Typeface ubuntu = Typeface.createFromAsset(getActivity().getAssets(), "font/Ubuntu-R.ttf");
-        forgetPassword.setTypeface(ubuntu);
-
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
