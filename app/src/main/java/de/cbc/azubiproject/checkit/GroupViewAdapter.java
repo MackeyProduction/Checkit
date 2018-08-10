@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import de.cbc.azubiproject.models.UserGroup;
+import de.cbc.azubiproject.repositories.UserGroupRepository;
 
 public class GroupViewAdapter extends RecyclerView.Adapter<GroupViewAdapter.ViewHolder> {
     private List<UserGroup> mDataset;
+    private UserGroupRepository userGroupCreated;
     private OnItemClickListener clickListener;
 
     public interface OnItemClickListener {
@@ -32,8 +35,9 @@ public class GroupViewAdapter extends RecyclerView.Adapter<GroupViewAdapter.View
         }
     }
 
-    public GroupViewAdapter(List<UserGroup> myDataset) {
+    public GroupViewAdapter(List<UserGroup> myDataset, UserGroupRepository userGroup) {
         mDataset = myDataset;
+        userGroupCreated = userGroup;
     }
 
     @Override
@@ -45,20 +49,27 @@ public class GroupViewAdapter extends RecyclerView.Adapter<GroupViewAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.textViewGroupHeadline.setText(mDataset.get(position).getGroup().getGroupName());
-        holder.textViewGroupSubline.setText(mDataset.get(position).getUser().getUsername());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (clickListener != null) {
-                    try {
-                        clickListener.onItemClick(mDataset.get(position));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        try {
+            holder.textViewGroupHeadline.setText(mDataset.get(position).getGroup().getGroupName());
+            holder.textViewGroupSubline.setText("Erstellt von: " + ((UserGroup)userGroupCreated.getByCreatedStatus(mDataset.get(position).getGroup().getGroupId())).getUser().getUsername());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clickListener != null) {
+                        try {
+                            clickListener.onItemClick(mDataset.get(position));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-            }
-        });
+            });
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

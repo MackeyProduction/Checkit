@@ -10,17 +10,19 @@ public class UserGroup implements IUserGroup {
     private int userGroupId;
     private User user;
     private Group group;
+    private int created;
 
     public UserGroup()
     {
         super();
     }
 
-    public UserGroup(int userGroupId, User user, Group group)
+    public UserGroup(int userGroupId, User user, Group group, int created)
     {
         this.userGroupId = userGroupId;
         this.user = user;
         this.group = group;
+        this.created = created;
     }
 
     @Override
@@ -36,5 +38,9 @@ public class UserGroup implements IUserGroup {
     @Override
     public Group getGroup() {
         return group;
+    }
+
+    public int getCreated() {
+        return created;
     }
 }

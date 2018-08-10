@@ -112,7 +112,7 @@
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:fontFamily="@font/ubuntu"
-        android:hint="Geburtsdatum"
+        android:hint="Geburtsdatum (yyyy-MM-dd)"
         android:inputType="textPersonName"
         android:minHeight="@dimen/editText_minHeight"
         android:minWidth="@dimen/editText_minWidth"

@@ -15,4 +15,5 @@ public interface IUserGroupRepository extends IResponseRepository {
     public boolean createNewGroup(Collection<UserGroup> userGroupCollection) throws ExecutionException, InterruptedException;
     public String getGroupsActiveCount(String username) throws ExecutionException, InterruptedException;
     public UserGroup getByGroupName(String groupName) throws ExecutionException, InterruptedException;
+    public UserGroup getByCreatedStatus(int id) throws ExecutionException, InterruptedException;
 }

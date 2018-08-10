@@ -59,6 +59,11 @@ public class UserGroupRepository implements IUserGroupRepository {
         return ug;
     }
 
+    public UserGroup getByCreatedStatus(int id) throws ExecutionException, InterruptedException
+    {
+        return (UserGroup) new FilterCollection(userGroupCollection, userGroup -> userGroup.getGroup().getGroupId() == id && userGroup.getCreated() == 1).getCollection().toArray()[0];
+    }
+
     public Collection<UserGroup> getByUsername(String username)
     {
         return new FilterCollection(userGroupCollection, userGroupCollection -> userGroupCollection.getUser().getUsername().equals(username)).getCollection();

@@ -9,4 +9,5 @@ public interface IUserGroup {
     public int getUserGroupId();
     public User getUser();
     public Group getGroup();
+    public int getCreated();
 }

@@ -31,6 +31,7 @@ import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.models.AddGroupDialog;
 import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.UserGroup;
+import de.cbc.azubiproject.repositories.UserGroupRepository;
 
 
 /**
@@ -46,7 +47,7 @@ public class GroupViewFragment extends Fragment {
     public static final String GROUP_ID = "de.cbc.checkit.MESSAGE";
     public static final String STRING_BUNDLE = "de.cbc.checkit.MESSAGE";
     private GroupContainer groupContainer;
-    private List<UserGroup> userGroups;
+    private List<UserGroup> userGroups, userGroupCreated;
     private GroupViewAdapter groupViewAdapter;
 
     public GroupViewFragment() {
@@ -109,7 +110,7 @@ public class GroupViewFragment extends Fragment {
 
                 if (userGroups != null) {
                     // specify an adapter (see also next example)
-                    groupViewAdapter = new GroupViewAdapter(userGroups);
+                    groupViewAdapter = new GroupViewAdapter(userGroups, groupContainer.getUserGroupCollection());
                     rvGroup.setAdapter(groupViewAdapter);
 
                     groupViewAdapter.setOnClickListener(new GroupViewAdapter.OnItemClickListener() {
