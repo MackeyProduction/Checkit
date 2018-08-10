@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.cbc.azubiproject.asynctasks.AddUserGroupTask;
+import de.cbc.azubiproject.checkit.GroupViewAdapter;
 import de.cbc.azubiproject.checkit.R;
 import de.cbc.azubiproject.checkit.UserTagAdapter;
 import de.cbc.azubiproject.containers.GroupContainer;
@@ -27,6 +28,7 @@ import de.cbc.azubiproject.containers.RepositoryContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
 import de.cbc.azubiproject.http.HttpResponse;
 import de.cbc.azubiproject.interfaces.AbstractCustomDialog;
+import de.cbc.azubiproject.interfaces.DialogOnClickListener;
 
 public class AddGroupDialog extends AbstractCustomDialog {
     private List<User> userList;
@@ -36,6 +38,7 @@ public class AddGroupDialog extends AbstractCustomDialog {
     private Button btnSearchUser;
     private EditText editTextGroupName;
     private String username;
+    private DialogOnClickListener onClickListener;
 
     public AddGroupDialog(Activity activity, int resourceId) {
         super(activity, resourceId);
@@ -67,6 +70,9 @@ public class AddGroupDialog extends AbstractCustomDialog {
                         httpResponse = new AddUserGroupTask().execute(user.getUsername(), editTextGroupName.getText().toString(), "0").get();
                     }
 
+                    if (onClickListener != null) {
+                        onClickListener.onOk();
+                    }
                     Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 } else {
@@ -137,5 +143,13 @@ public class AddGroupDialog extends AbstractCustomDialog {
         // set adapter
         userTagAdapter = new UserTagAdapter(userList);
         rvUserTag.setAdapter(userTagAdapter);
+    }
+
+    public DialogOnClickListener getOnClickListener() {
+        return onClickListener;
+    }
+
+    public void setOnClickListener(DialogOnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 }

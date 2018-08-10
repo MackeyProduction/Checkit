@@ -13,11 +13,13 @@ import de.cbc.azubiproject.asynctasks.AddQuestionTask;
 import de.cbc.azubiproject.checkit.R;
 import de.cbc.azubiproject.http.HttpResponse;
 import de.cbc.azubiproject.interfaces.AbstractCustomDialog;
+import de.cbc.azubiproject.interfaces.DialogOnClickListener;
 
 public class AddQuestionDialog extends AbstractCustomDialog {
     private String[] dataEditText;
     private int[] dataRadioButton;
     private String username, groupName;
+    private DialogOnClickListener onClickListener;
 
     public AddQuestionDialog(Activity activity, int resourceId) {
         super(activity, resourceId);
@@ -61,6 +63,9 @@ public class AddQuestionDialog extends AbstractCustomDialog {
                 // add free text answer
                 httpResponse = new AddQuestionTask().execute(username, groupName, editTextQuestion.getText().toString(), editTextAnswerFreeText.getText().toString(), "2", "1").get();
 
+                if (onClickListener != null) {
+                    onClickListener.onOk();
+                }
                 // successful
                 Toast.makeText(activity.getApplicationContext(), httpResponse.getStatusMessage(), Toast.LENGTH_LONG).show();
 
@@ -81,5 +86,13 @@ public class AddQuestionDialog extends AbstractCustomDialog {
     @Override
     protected void onCreate(Dialog dialog) {
 
+    }
+
+    public DialogOnClickListener getOnClickListener() {
+        return onClickListener;
+    }
+
+    public void setOnClickListener(DialogOnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 }

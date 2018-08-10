@@ -30,6 +30,7 @@
         android:paddingRight="@dimen/group_cardTextView_paddingRight"
         android:paddingTop="40dp"
         android:text="Keine Daten vorhanden."
+        android:textColor="@color/textViewColor"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

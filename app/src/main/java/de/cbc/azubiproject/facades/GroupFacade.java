@@ -23,12 +23,16 @@ public class GroupFacade {
     {
     }
 
-    public GroupContainer getContainer() throws ExecutionException, InterruptedException {
+    public GroupContainer getContainer(boolean refresh) throws ExecutionException, InterruptedException {
         return new GroupContainer(
-                QuestionAnswerRepository.getInstance(),
-                UserGroupRepository.getInstance(),
-                UserSessionRepository.getInstance()
+                QuestionAnswerRepository.getInstance(refresh),
+                UserGroupRepository.getInstance(refresh),
+                UserSessionRepository.getInstance(refresh)
         );
+    }
+
+    public GroupContainer getContainer() throws ExecutionException, InterruptedException {
+        return getContainer(false);
     }
 
     public RepositoryContainer getRepositories() {

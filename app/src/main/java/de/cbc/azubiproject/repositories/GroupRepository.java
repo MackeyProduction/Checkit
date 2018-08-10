@@ -22,9 +22,9 @@ public class GroupRepository implements IRepository {
     }
 
     public static GroupRepository getInstance() throws ExecutionException, InterruptedException {
-        if (groupRepository == null) {
+        //if (groupRepository == null) {
             groupRepository = new GroupRepository(new RetrieveGroupTask().execute(new GroupResponse(new HttpRequest(new Endpoint("/groups.php")), groupCollection)).get());
-        }
+        //}
         return groupRepository;
     }
 

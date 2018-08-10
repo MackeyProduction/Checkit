@@ -26,8 +26,8 @@ public class UserGroupRepository implements IUserGroupRepository {
         userGroupCollection = userGroups;
     }
 
-    public static UserGroupRepository getInstance() throws ExecutionException, InterruptedException {
-        if (userGroupRepository == null) {
+    public static UserGroupRepository getInstance(boolean refresh) throws ExecutionException, InterruptedException {
+        if (userGroupRepository == null || refresh) {
             userGroupRepository = new UserGroupRepository(new RetrieveUserGroupTask().execute(new UserGroupResponse(new HttpRequest(new Endpoint("/userGroups.php")), userGroupCollection)).get());
             gson = new Gson();
         }

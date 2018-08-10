@@ -31,6 +31,7 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:text="Was sind Serifen?"
+        android:textColor="@android:color/background_dark"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,8 @@
         app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintTop_toBottomOf="@+id/textViewQuestionModeQuestion"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btnQuestionModeAnswer2"
@@ -70,7 +72,8 @@
         app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintTop_toBottomOf="@+id/btnQuestionModeAnswer"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btnQuestionModeAnswer3"
@@ -88,7 +91,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintTop_toBottomOf="@+id/btnQuestionModeAnswer2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btnQuestionModeAnswer4"
@@ -105,5 +109,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintStart_toStartOf="@+id/imageViewQuestionModeCard"
         app:layout_constraintTop_toBottomOf="@+id/btnQuestionModeAnswer3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:textAllCaps="false" />
 </android.support.constraint.ConstraintLayout>

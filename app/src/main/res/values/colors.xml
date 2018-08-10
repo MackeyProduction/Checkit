@@ -8,4 +8,5 @@
     <color name="quizModeCorrect">#bef59f</color>
     <color name="quizModeWrong">#fc9a86</color>
     <color name="contour">#e30613</color>
+    <color name="textViewColor">#191919</color>
 </resources>

@@ -37,9 +37,9 @@ public class UserSessionRepository implements IUserSessionRepository {
         userSessionCollection = userSessions;
     }
 
-    public static UserSessionRepository getInstance() throws ExecutionException, InterruptedException
+    public static UserSessionRepository getInstance(boolean refresh) throws ExecutionException, InterruptedException
     {
-        if (userSessionRepository == null) {
+        if (userSessionRepository == null || refresh) {
             userSessionRepository = new UserSessionRepository(new RetrieveUserSessionTask().execute(new UserSessionResponse(new HttpRequest(new Endpoint("/userSessions.php")), new ArrayList<UserSession>())).get());
         }
         return userSessionRepository;

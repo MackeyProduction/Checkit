@@ -16,9 +16,9 @@ public class QuestionAnswerRepository implements IQuestionAnswerRepository {
     private static Collection<QuestionAnswer> questionAnswerCollection = null;
     private static QuestionAnswerRepository questionAnswerRepository = null;
 
-    public static QuestionAnswerRepository getInstance() throws InterruptedException, ExecutionException
+    public static QuestionAnswerRepository getInstance(boolean refresh) throws InterruptedException, ExecutionException
     {
-        if (questionAnswerRepository == null) {
+        if (questionAnswerRepository == null || refresh) {
             questionAnswerRepository = new QuestionAnswerRepository(new RetrieveQuestionAnswerTask().execute(new QuestionAnswerResponse(new HttpRequest(new Endpoint("/questionAnswer.php")), questionAnswerCollection)).get());
         }
         return questionAnswerRepository;

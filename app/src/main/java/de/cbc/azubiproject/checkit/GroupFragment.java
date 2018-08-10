@@ -20,6 +20,7 @@ import java.util.concurrent.ExecutionException;
 
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
+import de.cbc.azubiproject.interfaces.DialogOnClickListener;
 import de.cbc.azubiproject.models.AddQuestionDialog;
 import de.cbc.azubiproject.models.Group;
 import de.cbc.azubiproject.models.QuestionAnswer;
@@ -33,13 +34,14 @@ import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
  */
 public class GroupFragment extends Fragment implements View.OnClickListener {
     private QuestionModeFragment questionModeFragment;
-    private TextView textViewQuestion;
+    private TextView textViewGroupName;
     private RecyclerView rvGroupQuestions;
     private GroupAdapter groupAdapter;
     private int groupId;
     private String username;
     public static final String GROUP_ID = "de.cbc.checkit.MESSAGE";
     private int counter = 0;
+    private List<QuestionAnswer> questionAnswers;
 
     public GroupFragment() {
         // Required empty public constructor
@@ -58,6 +60,7 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         addQuestion.setOnClickListener(this);
 
         rvGroupQuestions = (RecyclerView) layout.findViewById(R.id.rvGroupQuestions);
+        textViewGroupName = (TextView) layout.findViewById(R.id.textViewGroupGroupName);
 
         return layout;
     }
@@ -84,7 +87,8 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
             username = getArguments().getStringArrayList(GroupViewFragment.STRING_BUNDLE).get(1);
 
             GroupContainer groupContainer = new GroupFacade().getContainer();
-            List<QuestionAnswer> questionAnswers = (List<QuestionAnswer>) groupContainer.getQuestionAnswerCollection().getByAnswerType(groupId, "Lernmodus");
+            textViewGroupName.setText(((List<UserGroup>) groupContainer.getUserGroupCollection().getByGroupId(groupId)).get(0).getGroup().getGroupName());
+            questionAnswers = (List<QuestionAnswer>) groupContainer.getQuestionAnswerCollection().getByAnswerType(groupId, "Lernmodus");
 
             groupAdapter = new GroupAdapter(questionAnswers);
             rvGroupQuestions.setAdapter(groupAdapter);
@@ -117,6 +121,22 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
             GroupRepository groupRepository = new GroupFacade().getRepositories().getUserGroupCollection().getGroupRepository();
             String groupName = ((Group) groupRepository.getById(groupId)).getGroupName();
             AddQuestionDialog addQuestionDialog = new AddQuestionDialog(getActivity(), R.layout.dialog_group_question, username, groupName);
+
+            addQuestionDialog.setOnClickListener(new DialogOnClickListener() {
+                @Override
+                public void onOk() {
+                    try {
+                        GroupContainer groupContainer = new GroupFacade().getContainer(true);
+                        questionAnswers.clear();
+                        questionAnswers.addAll(groupContainer.getQuestionAnswerCollection().getByAnswerType(groupId, "Lernmodus"));
+                        groupAdapter.notifyDataSetChanged();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             addQuestionDialog.showDialog();
         } catch (ExecutionException e) {
             e.printStackTrace();

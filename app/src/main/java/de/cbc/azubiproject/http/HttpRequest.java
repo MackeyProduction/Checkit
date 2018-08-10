@@ -124,6 +124,7 @@ public class HttpRequest implements IHttpRequest {
                     }
                 } else {
                     if (!responseString.equals("")) {
+                        httpResponse = gson.fromJson("{'responseCode':'5001','response':[{'responseMessage':'Ein unbekannter Fehler ist aufgetreten.'}]}", HttpResponse.class);
                         JsonElement element = gson.fromJson(responseString, JsonElement.class);
                         System.out.println(element.getAsJsonObject().get("response"));
                         httpResponse = gson.fromJson(responseString, HttpResponse.class);

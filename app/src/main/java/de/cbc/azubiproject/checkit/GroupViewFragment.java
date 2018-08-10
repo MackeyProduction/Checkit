@@ -4,6 +4,7 @@ package de.cbc.azubiproject.checkit;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.support.constraint.ConstraintLayout;
@@ -28,6 +29,7 @@ import java.util.concurrent.ExecutionException;
 
 import de.cbc.azubiproject.containers.GroupContainer;
 import de.cbc.azubiproject.facades.GroupFacade;
+import de.cbc.azubiproject.interfaces.DialogOnClickListener;
 import de.cbc.azubiproject.models.AddGroupDialog;
 import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.UserGroup;
@@ -157,6 +159,21 @@ public class GroupViewFragment extends Fragment {
     public void btnAddGroup_onClick() throws Exception
     {
         AddGroupDialog dialog = new AddGroupDialog(getActivity(), R.layout.dialog_group, username);
+        dialog.setOnClickListener(new DialogOnClickListener() {
+            @Override
+            public void onOk() {
+                try {
+                    groupContainer = new GroupFacade().getContainer(true);
+                    userGroups.clear();
+                    userGroups.addAll((List<UserGroup>)groupContainer.getUserGroupCollection().getByUsername(username));
+                    groupViewAdapter.notifyDataSetChanged();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         dialog.showDialog();
     }
 }
