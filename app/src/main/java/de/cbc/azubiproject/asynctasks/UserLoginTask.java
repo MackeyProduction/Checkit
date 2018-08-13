@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
-import de.cbc.azubiproject.checkit.GroupViewActivity;
 import de.cbc.azubiproject.http.Endpoint;
 import de.cbc.azubiproject.http.HttpRequest;
 import de.cbc.azubiproject.http.HttpResponse;
