@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/menuActionBar"
-        layout="@layout/checkit_action_bar_back_button"
+        layout="@layout/checkit_action_bar_back_button_no_profile"
         android:layout_width="0dp"
         android:layout_height="@dimen/menu_height"
         app:layout_constraintEnd_toEndOf="parent"
