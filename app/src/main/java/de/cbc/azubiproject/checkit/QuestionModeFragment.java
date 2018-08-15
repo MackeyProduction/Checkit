@@ -107,9 +107,9 @@ public class QuestionModeFragment extends Fragment {
         try {
             if (btn != null) {
                 if (correct == 1) {
-                    btn.setBackgroundResource(R.color.quizModeCorrect);
+                    btn.setBackgroundResource(R.drawable.rounded_button_bordered_correct);
                 } else {
-                    btn.setBackgroundResource(R.color.quizModeWrong);
+                    btn.setBackgroundResource(R.drawable.rounded_button_bordered_wrong);
                 }
             }
         } catch (Exception e) {
