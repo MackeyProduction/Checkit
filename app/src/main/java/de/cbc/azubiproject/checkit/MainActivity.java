@@ -91,21 +91,27 @@ public class MainActivity extends FragmentActivity {
             editTextPassword = findViewById(R.id.editTextPassword);
 
             httpResponse = new UserLoginTask().execute(editTextUsername.getText().toString(), editTextPassword.getText().toString()).get();
-            statusCode = Integer.parseInt(httpResponse.getStatusCode());
-            responseMessage = httpResponse.getStatusMessage();
 
-            if (statusCode == StatusCodes.LOGIN_SUCCESSFUL) {
-                Toast.makeText(view.getContext(), "Erfolgreich eingeloggt.", Toast.LENGTH_LONG).show();
+            // check if response exists
+            if (httpResponse != null) {
+                statusCode = Integer.parseInt(httpResponse.getStatusCode());
+                responseMessage = httpResponse.getStatusMessage();
 
-                // create bundle
-                createBundle();
+                if (statusCode == StatusCodes.LOGIN_SUCCESSFUL) {
+                    Toast.makeText(view.getContext(), "Erfolgreich eingeloggt.", Toast.LENGTH_LONG).show();
 
-                // redirect to activity
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.clMain, groupViewFragment);
-                fragmentTransaction.commit();
+                    // create bundle
+                    createBundle();
+
+                    // redirect to activity
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.clMain, groupViewFragment);
+                    fragmentTransaction.commit();
+                } else {
+                    Toast.makeText(view.getContext(), responseMessage, Toast.LENGTH_LONG).show();
+                }
             } else {
-                Toast.makeText(view.getContext(), responseMessage, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Es konnte keine Verbindung zum Server aufgebaut werden. Bitte versuche es später noch einmal.", Toast.LENGTH_LONG).show();
             }
         }
     }
