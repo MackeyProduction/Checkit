@@ -11,10 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -26,7 +26,6 @@ import de.cbc.azubiproject.models.Group;
 import de.cbc.azubiproject.models.QuestionAnswer;
 import de.cbc.azubiproject.models.UserGroup;
 import de.cbc.azubiproject.repositories.GroupRepository;
-import de.cbc.azubiproject.repositories.QuestionAnswerRepository;
 
 
 /**
@@ -54,9 +53,9 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
         View layout = inflater.inflate(R.layout.fragment_group, container, false);
 
         // buttons
-        FloatingActionButton questionMode = (FloatingActionButton) layout.findViewById(R.id.fabQuestionMode);
+        ImageView questionMode = (ImageView) layout.findViewById(R.id.ivQuestionMode);
         questionMode.setOnClickListener(this);
-        FloatingActionButton addQuestion = (FloatingActionButton) layout.findViewById(R.id.fabAddQuestion);
+        ImageView addQuestion = (ImageView) layout.findViewById(R.id.ivAddQuestion);
         addQuestion.setOnClickListener(this);
 
         rvGroupQuestions = (RecyclerView) layout.findViewById(R.id.rvGroupQuestions);
@@ -156,10 +155,10 @@ public class GroupFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         try {
             switch (view.getId()) {
-                case R.id.fabAddQuestion:
+                case R.id.ivAddQuestion:
                     btnAddQuestion_onClick(view);
                     break;
-                case R.id.fabQuestionMode:
+                case R.id.ivQuestionMode:
                     btnQuizMode_onClick(view);
                     break;
             }

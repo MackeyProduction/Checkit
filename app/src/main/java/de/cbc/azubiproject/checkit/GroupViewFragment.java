@@ -69,7 +69,7 @@ public class GroupViewFragment extends Fragment {
         rvGroup = (RecyclerView) layout.findViewById(R.id.rvGroup);
 
         // buttons
-        FloatingActionButton btnFabAddGroup = (FloatingActionButton) layout.findViewById(R.id.fabAddGroup);
+        ImageView btnFabAddGroup = (ImageView) layout.findViewById(R.id.ivAddGroup);
         btnFabAddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

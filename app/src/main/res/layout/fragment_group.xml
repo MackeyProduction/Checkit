@@ -51,38 +51,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabAddQuestion"
+    <ImageView
+        android:id="@+id/ivAddQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
+        android:foreground="@drawable/hinzufuegen"
+        android:minHeight="@dimen/button_minHeight"
+        android:minWidth="@dimen/button_minWidth"
         android:scaleType="centerCrop"
-        android:src="@drawable/kreuz"
-        app:backgroundTint="@color/buttonCollor"
-        app:fabSize="normal"
+        android:src="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.399999"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabQuestionMode"
+    <ImageView
+        android:id="@+id/ivQuestionMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:clickable="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/quizmodus_gross"
-        app:backgroundTint="@color/buttonCollor"
-        app:fabSize="normal"
+        android:foreground="@drawable/quizmodus_gross2"
+        android:minHeight="@dimen/button_minHeight"
+        android:minWidth="@dimen/button_minWidth"
+        android:src="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.611111"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.v7.widget.RecyclerView
@@ -90,7 +91,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/fabAddQuestion"
+        app:layout_constraintBottom_toTopOf="@+id/ivAddQuestion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewGroupActionBar" />
